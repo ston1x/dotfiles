@@ -128,6 +128,8 @@ PATH="/home/ston1x/.gem/ruby/2.5.0/bin:$PATH"
 #
 alias todo='vim ~/notes/todo'
 alias zshrc='vim ~/.zshrc'
+alias vimrc='vim ~/.vimrc'
+alias vimnt='vim -c NERDTree'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
