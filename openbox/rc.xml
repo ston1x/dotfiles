@@ -50,8 +50,8 @@
     <keepBorder>yes</keepBorder>
     <animateIconify>yes</animateIconify>
     <font place="ActiveWindow">
-      <name>Ubuntu</name>
-      <size>10</size>
+      <name>Ubuntu Mono</name>
+      <size>11</size>
       <!-- font size in points -->
       <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
@@ -59,8 +59,8 @@
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="InactiveWindow">
-      <name>Ubuntu</name>
-      <size>10</size>
+      <name>Ubuntu Mono</name>
+      <size>11</size>
       <!-- font size in points -->
       <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
@@ -101,10 +101,10 @@
       <slant>Normal</slant>
     </font>
     <font place="InactiveOnScreenDisplay">
-      <name>Sans</name>
-      <size>8</size>
-      <weight/>
-      <slant/>
+      <name>Ubuntu</name>
+      <size>9</size>
+      <weight>Normal</weight>
+      <slant>Normal</slant>
     </font>
   </theme>
   <desktops>
@@ -160,11 +160,11 @@
     <floatingX>0</floatingX>
     <floatingY>0</floatingY>
     <noStrut>no</noStrut>
-    <stacking>Above</stacking>
+    <stacking>Normal</stacking>
     <!-- 'Above', 'Normal', or 'Below' -->
     <direction>Vertical</direction>
     <!-- 'Vertical' or 'Horizontal' -->
-    <autoHide>no</autoHide>
+    <autoHide>yes</autoHide>
     <hideDelay>300</hideDelay>
     <!-- in milliseconds (1000 = 1 second) -->
     <showDelay>300</showDelay>
@@ -258,7 +258,6 @@
       <action name="FocusToBottom"/>
       <action name="Unfocus"/>
     </keybind>
-
     <!-- Keybindings for window switching -->
     <keybind key="A-Tab">
       <action name="NextWindow"/>
@@ -828,7 +827,6 @@
     </context>
   </mouse>
   <menu>
-
     <!-- default menu file (or custom one in $HOME/.config/openbox/) -->
     <file>/usr/share/lxde/openbox/menu.xml</file>
     <hideDelay>200</hideDelay>

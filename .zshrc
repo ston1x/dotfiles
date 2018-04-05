@@ -5,8 +5,8 @@
   export ZSH=~/.oh-my-zsh
 
 # Powerline
-#  powerline-daemon -q
-#  . /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
+# powerline-daemon -q
+# . /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # Set name of the theme to load. If you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -16,9 +16,31 @@
 
 # ZSH_THEME="arrow"
 # ZSH_THEME="fishy"
-  ZSH_THEME="flazz"
+# ZSH_THEME="flazz"
 # ZSH_THEME="gallifrey"
 # ZSH_THEME="gallois"
+#ZSH_THEME="af-magic"
+#ZSH_THEME="alanpeabody"
+
+#ZSH_THEME="sunaku"
+#ZSH_THEME="risto"
+ZSH_THEME="lukerandall"
+##########
+#ZSH_THEME="kafeitu"
+#ZSH_THEME="gentoo"
+#########
+#ZSH_THEME="fwalch"
+#ZSH_THEME="robbyrussell"
+#################
+#ZSH_THEME="example"
+#########
+#ZSH_THEME="daveverwer"
+#########
+#ZSH_THEME="cypher"
+#ZSH_THEME="candy-kingdom"
+#####              #####
+#ZSH_THEME="awesomepanda"
+####               #####
 
 
 # Set list of themes to load
@@ -104,6 +126,8 @@ PATH="/home/ston1x/.gem/ruby/2.5.0/bin:$PATH"
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
+alias todo='vim ~/notes/todo'
+alias zshrc='vim ~/.zshrc'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
