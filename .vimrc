@@ -7,6 +7,8 @@
 :set laststatus=2
 :syntax on
 
+let mapleader = "\<Space>"
+
 :set nocompatible      " We're running Vim, not Vi!
 :filetype on           " Enable filetype detection
 :filetype indent on    " Enable filetype-specific indenting
@@ -19,6 +21,23 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 call plug#end()
+
+"using rg for find in project
+let g:rg_command = '
+  \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
+  \ -g "*.{coffee,haml,hamlc,js,json,rs,go,rb,py,swift,scss}"
+  \ -g "!{.git,node_modules,vendor,log,swp,tmp,venv,__pychache__}/*" '
+command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
+
+"Mappings
+nnoremap <leader>f :F<CR>
+
+nnoremap <Leader>q :wq<CR>
+nnoremap <Leader>x :q!<CR>
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :wq<CR>
+nnoremap <leader>h :hide<CR>
+nnoremap <leader>o :only<CR>
 
 nnoremap \ :NERDTreeToggle<CR>
 nnoremap ,r :NERDTreeFind<CR>
@@ -34,3 +53,10 @@ noremap <up> <C-W>+
 noremap <down> <C-W>-
 noremap <left>  3<C-W><
 noremap <right> 3<C-W>>
+
+"Tags
+set shell=zsh
+set tags+=.git/tags,.git/rubytags,.git/bundlertags
+set tagcase=match
+noremap ,gt :!gentags<CR>
+
