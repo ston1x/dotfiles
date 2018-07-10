@@ -42,7 +42,6 @@ ZSH_THEME="lukerandall"
 #ZSH_THEME="awesomepanda"
 ####               #####
 
-
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
 # cause zsh load theme from this variable instead of
@@ -95,26 +94,20 @@ ZSH_THEME="lukerandall"
 plugins=(
   git
   zsh-autosuggestions
+  wd
 )
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
 # export MANPATH="/usr/local/man:$MANPATH"
 
-# Ruby gems
-PATH="/home/ston1x/.gem/ruby/2.5.0/bin:$PATH"
+# Set language environment
+export LANG=en_US.UTF-8
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+Preferred editor for local and remote sessions
+  if [[ -n $SSH_CONNECTION ]]; then
+    export EDITOR='vim'
+  fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -127,11 +120,17 @@ PATH="/home/ston1x/.gem/ruby/2.5.0/bin:$PATH"
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
+alias psql='postgres'
 alias todo='vim ~/notes/todo'
 alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
 alias vimnt='vim -c NERDTree'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias ohmyzsh="vim ~/.oh-my-zsh"
+
+export GEM_HOME=$HOME/.gem
+export GEM_PATH=$HOME/.gem
+export PATH="$PATH:$GEM_HOME/bin"
+
 
