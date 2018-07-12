@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to oh-my-zsh installation
   export ZSH=~/.oh-my-zsh
@@ -124,13 +124,16 @@ alias psql='postgres'
 alias todo='vim ~/notes/todo'
 alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
-alias vimnt='vim -c NERDTree'
+alias vim='/usr/local/Cellar/vim/8.1.0150/bin/vim'
+alias alaconf="vim $HOME/.config/alacritty/alacritty.yml"
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 
 export GEM_HOME=$HOME/.gem
 export GEM_PATH=$HOME/.gem
+
+# Add gem binaries
 export PATH="$PATH:$GEM_HOME/bin"
 
-
+# Rust binaries
+export PATH="$HOME/.cargo/bin:$PATH"
