@@ -1,18 +1,22 @@
-:set nu
+set nu
+set noswapfile
+set clipboard=unnamed
 
-:set tabstop=2
-:set shiftwidth=2
-:set expandtab
+set tabstop=2
+set shiftwidth=2
+set expandtab
 
-:set laststatus=2
-:syntax on
+set laststatus=2
+syntax on
 
 let mapleader = "\<Space>"
 
-:set nocompatible      " We're running Vim, not Vi!
-:filetype on           " Enable filetype detection
-:filetype indent on    " Enable filetype-specific indenting
-:filetype plugin on    " Enable filetype-specific plugins
+set nocompatible      " We're running Vim, not Vi!
+set backspace=2
+
+filetype on           " Enable filetype detection
+filetype indent on    " Enable filetype-specific indenting
+filetype plugin on    " Enable filetype-specific plugins
 
 autocmd FileType ruby compiler ruby
 
@@ -20,6 +24,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'yggdroot/indentline'
+Plug 'chrisbra/colorizer'
 call plug#end()
 
 "using rg for find in project
