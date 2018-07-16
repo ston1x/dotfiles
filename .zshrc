@@ -95,6 +95,7 @@ plugins=(
   git
   zsh-autosuggestions
   wd
+  fzf-zsh
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -121,12 +122,12 @@ export LANG=en_US.UTF-8
 # For a full list of active aliases, run `alias`.
 #
 alias psql='postgres'
-alias todo='vim ~/notes/todo'
+alias todo='vim ~/tmp/todo'
 alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
 alias vim='/usr/local/Cellar/vim/8.1.0150/bin/vim'
 alias alaconf="vim $HOME/.config/alacritty/alacritty.yml"
-# Example aliases
+alias tmuxconf="vim ~/.tmux.conf"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 
 export GEM_HOME=$HOME/.gem
