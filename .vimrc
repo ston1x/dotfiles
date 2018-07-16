@@ -1,6 +1,7 @@
 set nu
 set noswapfile
 set clipboard=unnamed
+set relativenumber
 
 set tabstop=2
 set shiftwidth=2
@@ -38,11 +39,11 @@ command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>),
 
 "Mappings
 nnoremap <leader>f :F<CR>
+nnoremap ,f :tabnew %<CR>
 
 nnoremap <Leader>q :wq<CR>
 nnoremap <Leader>x :q!<CR>
 nnoremap <Leader>w :w<CR>
-nnoremap <Leader>q :wq<CR>
 nnoremap <leader>h :hide<CR>
 nnoremap <leader>o :only<CR>
 
