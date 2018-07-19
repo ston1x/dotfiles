@@ -46,6 +46,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
+Plug 'vim-scripts/matchit.zip'
 call plug#end()
 
 " Theme
