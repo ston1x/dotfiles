@@ -74,6 +74,9 @@ nnoremap <Leader>w :w<CR>
 nnoremap <leader>h :hide<CR>
 nnoremap <leader>o :only<CR>
 
+nmap <F3> i<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>
+imap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
+
 " Hide those annoying search highlihghts
 nnoremap cc :let @/ = ""<cr>
 
@@ -96,6 +99,7 @@ noremap <right> 3<C-W>>
 
 " RSpec.vim mappings
 map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
 
 "Tags
 set shell=zsh
