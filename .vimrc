@@ -19,6 +19,8 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 
+set encoding=UTF-8
+
 syntax on
 
 let mapleader = "\<Space>"
@@ -82,6 +84,8 @@ nnoremap cc :let @/ = ""<cr>
 
 nnoremap \ :NERDTreeToggle<CR>
 nnoremap ,r :NERDTreeFind<CR>
+let NERDTreeShowHidden=1
+
 let g:vimrubocop_keymap = 0
 nmap <Leader>r :RuboCop<CR>
 
