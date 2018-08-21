@@ -3,7 +3,7 @@ set noswapfile
 set clipboard=unnamed
 set relativenumber
 set mouse=a
-set laststatus=0
+set laststatus=2
 set updatetime=100
 
 " Highlight search results
@@ -75,6 +75,9 @@ nnoremap <Leader>x :q!<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <leader>h :hide<CR>
 nnoremap <leader>o :only<CR>
+nnoremap <leader>g :Gstatus<CR>
+nnoremap <leader>d :Gdiff<CR>
+nnoremap <C-e> :Buffers<CR>
 
 nmap <F3> i<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>
 imap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
@@ -87,7 +90,7 @@ nnoremap ,r :NERDTreeFind<CR>
 let NERDTreeShowHidden=1
 
 let g:vimrubocop_keymap = 0
-nmap <Leader>r :RuboCop<CR>
+nmap <Leader>r :RuboCop -R<CR>
 
 let g:fzf_action = {
       \ 'ctrl-s': 'split',
