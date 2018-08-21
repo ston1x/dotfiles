@@ -77,6 +77,7 @@ nnoremap <leader>h :hide<CR>
 nnoremap <leader>o :only<CR>
 nnoremap <leader>g :Gstatus<CR>
 nnoremap <leader>d :Gdiff<CR>
+nnoremap <leader>b :Gblame<CR>
 nnoremap <C-e> :Buffers<CR>
 
 nmap <F3> i<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>
