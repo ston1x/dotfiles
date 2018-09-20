@@ -192,3 +192,9 @@ command! Stringify    :%s/:\([a-z_]\+\)/"\1"/gc
 command! NewHash      :%s/"\([^=,'"]*\)"\s\+=> /\1: /gc
 command! OldHash      :%s/\(\w*\): \(\w*\)/"\1" => \2/gc
 
+
+" Tabular
+vmap ,'  :Tabularize /:\zs/l0l1<CR>
+vmap ,": :Tabularize /":\zs/l0l1<CR>
+vmap ,=  :Tabularize /=<CR>
+vmap ,=> :Tabularize /=/l1l1<CR>
