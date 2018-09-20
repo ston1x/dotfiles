@@ -5,6 +5,7 @@ set relativenumber
 set mouse=a
 set laststatus=2
 set updatetime=100
+set wildmenu
 
 " Highlight search results
 set incsearch
@@ -49,6 +50,10 @@ Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/matchit.zip'
+Plug 'mileszs/ack.vim'
+Plug 'foosoft/vim-argwrap'
+Plug 'godlygeek/tabular'
+
 call plug#end()
 
 " Theme
@@ -59,13 +64,18 @@ set background=light
 let g:solarized_bold=1
 syntax enable
 
-" Using rg for find in project
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+"using rg for find in project
 let g:rg_command = '
   \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
   \ -g "*.{coffee,haml,hamlc,js,json,rs,go,rb,py,swift,scss}"
   \ -g "!{.git,node_modules,vendor,log,swp,tmp,venv,__pychache__}/*" '
-command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
-
+command! -bang -nargs=* F
+                 \ call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1,
+                 \ fzf#vim#with_preview(),
+                 \ <bang>0)
+nnoremap <leader>f :F<CR>
 "Mappings
 nnoremap <leader>f :F<CR>
 nnoremap ,f :tabnew %<CR>
@@ -79,6 +89,8 @@ nnoremap <leader>g :Gstatus<CR>
 nnoremap <leader>d :Gdiff<CR>
 nnoremap <leader>b :Gblame<CR>
 nnoremap <C-e> :Buffers<CR>
+nnoremap <silent> <leader>a :ArgWrap<CR>
+nnoremap <leader>m :BTags<CR>
 
 nmap <F3> i<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>
 imap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
@@ -114,4 +126,69 @@ set shell=zsh
 set tags+=.git/tags,.git/rubytags,.git/bundlertags
 set tagcase=match
 noremap ,gt :!gentags<CR>
+
+" Convert slashes to backslashes for Windows.
+if has('win32')
+  nmap <Leader>cs :let @+=substitute(expand("%"), "/", "\\", "g")<CR>
+  nmap <Leader>cl :let @+=substitute(expand("%:p"), "/", "\\", "g")<CR>
+
+  " This will copy the path in 8.3 short format, for DOS and Windows 9x
+  nmap <Leader>c8 :let @+=substitute(expand("%:p:8"), "/", "\\", "g")<CR>
+else
+  nmap <Leader>cs :let @+=expand("%")<CR>
+  nmap <Leader>cl :let @+=expand("%:p")<CR>
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SWITCH BETWEEN TEST AND PRODUCTION CODE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! OpenTestAlternate()
+  let new_file = AlternateForCurrentFile()
+  exec ':e ' . new_file
+endfunction
+function! OpenTestAlternateSplit()
+  let new_file = AlternateForCurrentFile()
+  exec ':vsp ' . new_file
+endfunction
+function! AlternateForCurrentFile()
+  let current_file = expand("%")
+  let new_file = current_file
+  let in_spec = match(current_file, '^spec/') != -1
+  let going_to_spec = !in_spec
+  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<workers\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1
+  if going_to_spec
+    if in_app
+      let new_file = substitute(new_file, '^app/', '', '')
+    end
+    let new_file = substitute(new_file, '\.e\?rb$', '_spec.rb', '')
+    let new_file = 'spec/' . new_file
+  else
+    let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
+    let new_file = substitute(new_file, '^spec/', '', '')
+    if in_app
+      let new_file = 'app/' . new_file
+    end
+  endif
+
+  return new_file
+endfunction
+
+nnoremap <leader>s :call OpenTestAlternate()<cr>
+nnoremap <leader>s. :call OpenTestAlternateSplit()<cr>
+
+function! ColorToggle()
+  if(&background == "dark")
+    set background=light
+  else
+    set background=dark
+  endif
+endfunction
+
+map <Leader>c :call ColorToggle()<CR>
+
+"Commands
+command! Symbolicate  :%s/"\([a-z_]\+\)"/:\1/gc
+command! Stringify    :%s/:\([a-z_]\+\)/"\1"/gc
+command! NewHash      :%s/"\([^=,'"]*\)"\s\+=> /\1: /gc
+command! OldHash      :%s/\(\w*\): \(\w*\)/"\1" => \2/gc
 
