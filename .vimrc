@@ -1,9 +1,9 @@
 set number
 set noswapfile
 set clipboard=unnamed
-set relativenumber
+" set relativenumber
 set mouse=a
-set laststatus=2
+set laststatus=1
 set updatetime=100
 set wildmenu
 
@@ -187,14 +187,16 @@ endfunction
 map <Leader>c :call ColorToggle()<CR>
 
 "Commands
-command! Symbolicate  :%s/"\([a-z_]\+\)"/:\1/gc
-command! Stringify    :%s/:\([a-z_]\+\)/"\1"/gc
-command! NewHash      :%s/"\([^=,'"]*\)"\s\+=> /\1: /gc
-command! OldHash      :%s/\(\w*\): \(\w*\)/"\1" => \2/gc
+command! Symbolicate   :%s/"\([a-z_]\+\)"/:\1/gc
+command! Stringify     :%s/:\([a-z_]\+\)/"\1"/gc
+command! SpecFormatFix :%s/:\([a-z_]\+\)=>/\1: /gc
+command! NewHash       :%s/"\([^=,'"]*\)"\s\+=> /\1: /gc
+command! OldHash       :%s/\(\w*\): \(\w*\)/"\1" => \2/gc
 
 
 " Tabular
-vmap ,'  :Tabularize /:\zs/l0l1<CR>
+vmap ,:  :Tabularize /:\zs/l0l1<CR>
 vmap ,": :Tabularize /":\zs/l0l1<CR>
 vmap ,=  :Tabularize /=<CR>
 vmap ,=> :Tabularize /=/l1l1<CR>
+
