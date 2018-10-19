@@ -17,29 +17,53 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # ZSH_THEME="arrow"
 # ZSH_THEME="fishy"
 # ZSH_THEME="flazz"
+# ZSH_THEME="superjarin"
 # ZSH_THEME="gallifrey"
 # ZSH_THEME="gallois"
-#ZSH_THEME="af-magic"
-#ZSH_THEME="alanpeabody"
+# ZSH_THEME="af-magic"
+# ZSH_THEME="alanpeabody"
 
-#ZSH_THEME="sunaku"
-#ZSH_THEME="risto"
-ZSH_THEME="lukerandall"
+# ZSH_THEME="sunaku"
+# ZSH_THEME="risto"
+# ZSH_THEME="lukerandall"
 ##########
-#ZSH_THEME="kafeitu"
-#ZSH_THEME="gentoo"
+# ZSH_THEME="kafeitu"
+# ZSH_THEME="gentoo"
 #########
-#ZSH_THEME="fwalch"
-#ZSH_THEME="robbyrussell"
+# ZSH_THEME="fwalch"
+# ZSH_THEME="robbyrussell"
 #################
-#ZSH_THEME="example"
+# ZSH_THEME="example"
+######### !
+# ZSH_THEME="daveverwer"
+
+EMOJI=(💩 🐦 🚀 🐞 🎨 🍕 🐭 👽 ☕️ 🔬 💀 🐷 🐼 🐶 🐸 🐧 🐳 🍔 🍣 🍻 🔮 💰 💎 💾 💜 🍪 🌞 🌍 🐌 🐓 🍄 🐾 🐛 💚 🐬 🐤 👀)
+
+function random_emoji {
+  echo -n "$EMOJI[$RANDOM%$#EMOJI+1]"
+}
+
+ZSH_THEME="spaceship"
+SPACESHIP_CHAR_SYMBOL="$(random_emoji) "
+
+# ZSH_THEME="myCustomTheme"
 #########
-#ZSH_THEME="daveverwer"
-#########
-#ZSH_THEME="cypher"
-#ZSH_THEME="candy-kingdom"
+# ZSH_THEME="cypher"
+# ZSH_THEME="candy-kingdom"
+
+# ruby
+# ZSH_THEME="dallas"
+# ZSH_THEME="crunch"
+# ZSH_THEME="wuffers"
+
+# !
+# ZSH_THEME="macovsky"
+# ZSH_THEME="random-emoji"
+# ZSH_THEME="punctual"
+
 #####              #####
-#ZSH_THEME="awesomepanda"
+# ZSH_THEME="awesomepanda"
+# ZSH_THEME="sunrise"
 ####               #####
 
 # Set list of themes to load
@@ -123,12 +147,14 @@ export LANG=en_US.UTF-8
 #
 alias psql='postgres'
 alias todo='vim ~/tmp/todo'
+alias notes='vim ~/tmp/notes'
 alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
 alias vim='/usr/local/Cellar/vim/8.1.0150/bin/vim'
 alias alaconf="vim $HOME/.config/alacritty/alacritty.yml"
 alias tmuxconf="vim ~/.tmux.conf"
 alias ohmyzsh="vim ~/.oh-my-zsh"
+alias be="bundle exec"
 
 export GEM_HOME=$HOME/.gem
 export GEM_PATH=$HOME/.gem
