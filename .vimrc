@@ -43,6 +43,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'yggdroot/indentline'
 Plug 'tpope/vim-rails'
 Plug 'ngmy/vim-rubocop'
+Plug 'vim-ruby/vim-ruby'
 Plug 'altercation/vim-colors-solarized'
 Plug 'KKPMW/sacredforest-vim'
 Plug 'tpope/vim-fugitive'
@@ -53,7 +54,8 @@ Plug 'vim-scripts/matchit.zip'
 Plug 'mileszs/ack.vim'
 Plug 'foosoft/vim-argwrap'
 Plug 'godlygeek/tabular'
-
+Plug 'rrethy/vim-illuminate'
+Plug 'ap/vim-css-color'
 call plug#end()
 
 " Theme
@@ -91,6 +93,7 @@ nnoremap <leader>b :Gblame<CR>
 nnoremap <C-e> :Buffers<CR>
 nnoremap <silent> <leader>a :ArgWrap<CR>
 nnoremap <leader>m :BTags<CR>
+nnoremap <leader>e :edit!<CR>
 
 nmap <F3> i<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>
 imap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
@@ -116,6 +119,12 @@ noremap <up> <C-W>+
 noremap <down> <C-W>-
 noremap <left>  3<C-W><
 noremap <right> 3<C-W>>
+
+" Fold
+set foldenable
+set foldlevelstart=99
+set foldmethod=indent " foldmethod=syntax is slow
+nnoremap <leader>z zMzv
 
 " RSpec.vim mappings
 map <Leader>t :call RunCurrentSpecFile()<CR>
