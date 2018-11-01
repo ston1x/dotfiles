@@ -3,7 +3,7 @@ set noswapfile
 set clipboard=unnamed
 " set relativenumber
 set mouse=a
-set laststatus=1
+set laststatus=0
 set updatetime=100
 set wildmenu
 

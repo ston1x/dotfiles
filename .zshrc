@@ -1,4 +1,4 @@
-# If you come from bash you might have to change your $PATH.
+ # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to oh-my-zsh installation
@@ -44,7 +44,7 @@ function random_emoji {
 }
 
 ZSH_THEME="spaceship"
-SPACESHIP_CHAR_SYMBOL="$(random_emoji) "
+# SPACESHIP_CHAR_SYMBOL="$(random_emoji) "
 
 # ZSH_THEME="myCustomTheme"
 #########
@@ -145,12 +145,13 @@ export LANG=en_US.UTF-8
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
+alias vim="nvim"
 alias psql='postgres'
 alias todo='vim ~/tmp/todo'
 alias notes='vim ~/tmp/notes'
 alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
-alias vim='/usr/local/Cellar/vim/8.1.0150/bin/vim'
+# alias vim='/usr/local/Cellar/vim/8.1.0150/bin/vim'
 alias alaconf="vim $HOME/.config/alacritty/alacritty.yml"
 alias tmuxconf="vim ~/.tmux.conf"
 alias ohmyzsh="vim ~/.oh-my-zsh"
