@@ -122,8 +122,15 @@ nnoremap <Leader>9 9gt<CR>
 " Hide those annoying search highlihghts
 nnoremap cc :let @/ = ""<cr>
 
-nnoremap \ :NERDTreeToggle<CR>
-nnoremap ,r :NERDTreeFind<CR>
+" NERDTree
+function! MyNerdToggle()
+  if &filetype == 'nerdtree'
+    :NERDTreeToggle
+  else
+    :NERDTreeFind
+  endif
+endfunction
+nnoremap \ :call MyNerdToggle()<CR>
 let NERDTreeShowHidden=1
 
 let g:vimrubocop_keymap = 0
