@@ -3,7 +3,7 @@ set noswapfile
 set clipboard=unnamed
 " set relativenumber
 set mouse=a
-set laststatus=0
+" set laststatus=0
 set updatetime=100
 set wildmenu
 
@@ -57,6 +57,7 @@ Plug 'godlygeek/tabular'
 Plug 'rrethy/vim-illuminate'
 Plug 'ap/vim-css-color'
 Plug 'mkitt/tabline.vim'
+Plug 'ervandew/supertab'
 if has('nvim')
   Plug 'Shougo/deoplete.nvim'
   Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
@@ -66,6 +67,7 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#max_list = 10
 call plug#end()
 
 " Theme
@@ -87,9 +89,15 @@ command! -bang -nargs=* F
                  \ call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1,
                  \ fzf#vim#with_preview(),
                  \ <bang>0)
-nnoremap <leader>f :F<CR>
+nnoremap <leader>f :Rg<CR>
+
+command! -bang -nargs=* Rg
+      \ call fzf#vim#grep(
+      \ 'rg --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
+      \ fzf#vim#with_preview(),
+      \ <bang>0)
+
 "Mappings
-nnoremap <leader>f :F<CR>
 nnoremap ,f :tabnew %<CR>
 
 nnoremap <Leader>q :wq<CR>
@@ -99,11 +107,12 @@ nnoremap <leader>h :hide<CR>
 nnoremap <leader>o :only<CR>
 nnoremap <leader>g :Gstatus<CR>
 nnoremap <leader>d :Gdiff<CR>
-nnoremap <leader>b :Gblame<CR>
-nnoremap <C-e> :Buffers<CR>
+nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>b :Buffers<CR>
 nnoremap <silent> <leader>a :ArgWrap<CR>
 nnoremap <leader>m :BTags<CR>
 nnoremap <leader>e :edit!<CR>
+nnoremap <leader>od :!open '%:p:h'<CR>
 
 nmap <F3> i<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>
 imap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
@@ -118,13 +127,15 @@ nnoremap <Leader>6 6gt<CR>
 nnoremap <Leader>7 7gt<CR>
 nnoremap <Leader>8 8gt<CR>
 nnoremap <Leader>9 9gt<CR>
+nnoremap <Leader><Left> gT<CR>
+nnoremap <Leader><Right> gt<CR>
 
 " Hide those annoying search highlihghts
 nnoremap cc :let @/ = ""<cr>
 
 " NERDTree
 function! MyNerdToggle()
-  if &filetype == 'nerdtree'
+  if &filetype == 'nerdtree' || &filetype == ''
     :NERDTreeToggle
   else
     :NERDTreeFind
@@ -137,6 +148,7 @@ let g:vimrubocop_keymap = 0
 nmap <Leader>r :RuboCop -R<CR>
 
 let g:fzf_action = {
+      \ 'ctrl-t': 'tab split',
       \ 'ctrl-s': 'split',
       \ 'ctrl-v': 'vsplit'
       \}
