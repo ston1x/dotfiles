@@ -1,7 +1,7 @@
 set number
 set noswapfile
 set clipboard=unnamed
-" set relativenumber
+set relativenumber
 set mouse=a
 " set laststatus=0
 set updatetime=100
@@ -58,6 +58,10 @@ Plug 'rrethy/vim-illuminate'
 Plug 'ap/vim-css-color'
 Plug 'mkitt/tabline.vim'
 Plug 'ervandew/supertab'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vimwiki/vimwiki'
+Plug 'junegunn/goyo.vim'
 if has('nvim')
   Plug 'Shougo/deoplete.nvim'
   Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
@@ -74,7 +78,7 @@ call plug#end()
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " colorscheme solarized
 "set termguicolors
-set background=light
+" set background=light
 let g:solarized_bold=1
 syntax enable
 
