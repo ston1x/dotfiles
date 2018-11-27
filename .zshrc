@@ -11,32 +11,6 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Set name of the theme to load. If you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# ZSH_THEME="agnoster"
-# ZSH_THEME="robbyrussell"
-
-# ZSH_THEME="arrow"
-# ZSH_THEME="fishy"
-# ZSH_THEME="flazz"
-# ZSH_THEME="superjarin"
-# ZSH_THEME="gallifrey"
-# ZSH_THEME="gallois"
-# ZSH_THEME="af-magic"
-# ZSH_THEME="alanpeabody"
-
-# ZSH_THEME="sunaku"
-# ZSH_THEME="risto"
-# ZSH_THEME="lukerandall"
-##########
-# ZSH_THEME="kafeitu"
-# ZSH_THEME="gentoo"
-#########
-# ZSH_THEME="fwalch"
-# ZSH_THEME="robbyrussell"
-#################
-# ZSH_THEME="example"
-######### !
-# ZSH_THEME="daveverwer"
-
 EMOJI=(💩 🐦 🚀 🐞 🎨 🍕 🐭 👽 ☕️ 🔬 💀 🐷 🐼 🐶 🐸 🐧 🐳 🍔 🍣 🍻 🔮 💰 💎 💾 💜 🍪 🌞 🌍 🐌 🐓 🍄 🐾 🐛 💚 🐬 🐤 👀)
 
 function random_emoji {
@@ -44,34 +18,7 @@ function random_emoji {
 }
 
 ZSH_THEME="spaceship"
-# SPACESHIP_CHAR_SYMBOL="$(random_emoji) "
-
-# ZSH_THEME="myCustomTheme"
-#########
-# ZSH_THEME="cypher"
-# ZSH_THEME="candy-kingdom"
-
-# ruby
-# ZSH_THEME="dallas"
-# ZSH_THEME="crunch"
-# ZSH_THEME="wuffers"
-
-# !
-# ZSH_THEME="macovsky"
-# ZSH_THEME="random-emoji"
-# ZSH_THEME="punctual"
-
-#####              #####
-# ZSH_THEME="awesomepanda"
-# ZSH_THEME="sunrise"
-####               #####
-
-# Set list of themes to load
-# Setting this variable when ZSH_THEME=random
-# cause zsh load theme from this variable instead of
-# looking in ~/.oh-my-zsh/themes/
-# An empty array have no effect
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+SPACESHIP_CHAR_SYMBOL="$(random_emoji) "
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -123,6 +70,8 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+# export FZF_DEFAULT_COMMAND='rg --files ---hidden --follow -g "!.git" 2> /dev/null'
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
