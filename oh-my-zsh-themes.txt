@@ -1,0 +1,47 @@
+
+# ZSH_THEME="agnoster"
+# ZSH_THEME="robbyrussell"
+
+# ZSH_THEME="arrow"
+# ZSH_THEME="fishy"
+# ZSH_THEME="flazz"
+# ZSH_THEME="superjarin"
+# ZSH_THEME="gallifrey"
+# ZSH_THEME="gallois"
+# ZSH_THEME="af-magic"
+# ZSH_THEME="alanpeabody"
+
+# ZSH_THEME="sunaku"
+# ZSH_THEME="risto"
+# ZSH_THEME="lukerandall"
+##########
+# ZSH_THEME="kafeitu"
+# ZSH_THEME="gentoo"
+#########
+# ZSH_THEME="fwalch"
+# ZSH_THEME="robbyrussell"
+#################
+# ZSH_THEME="example"
+######### !
+# ZSH_THEME="daveverwer"
+
+# ZSH_THEME="myCustomTheme"
+#########
+# ZSH_THEME="cypher"
+# ZSH_THEME="candy-kingdom"
+
+# ruby
+# ZSH_THEME="dallas"
+# ZSH_THEME="crunch"
+# ZSH_THEME="wuffers"
+
+# !
+# ZSH_THEME="macovsky"
+# ZSH_THEME="random-emoji"
+# ZSH_THEME="punctual"
+
+#####              #####
+# ZSH_THEME="awesomepanda"
+# ZSH_THEME="sunrise"
+####               #####
+
