@@ -1,7 +1,14 @@
+" GENERAL VIM SETTINGS
 set number
 set noswapfile
-set clipboard=unnamed
 set relativenumber
+
+" Clipboard
+set clipboard=unnamed
+if has('unnamedplus')
+    set clipboard=unnamed,unnamedplus
+endif
+
 set mouse=a
 " set laststatus=0
 set updatetime=100
@@ -15,16 +22,13 @@ set hlsearch
 set ignorecase
 set smartcase
 
-
+" Indentation
 set tabstop=2
 set shiftwidth=2
 set expandtab
 
 set encoding=UTF-8
-
 syntax on
-
-let mapleader = "\<Space>"
 
 set nocompatible      " We're running Vim, not Vi!
 set backspace=2
@@ -58,10 +62,21 @@ Plug 'rrethy/vim-illuminate'
 Plug 'ap/vim-css-color'
 Plug 'mkitt/tabline.vim'
 Plug 'ervandew/supertab'
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'vimwiki/vimwiki'
+Plug 'plasticboy/vim-markdown'
+" Plug 'vim-pandoc/vim-pandoc'
+" Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'junegunn/goyo.vim'
+  nnoremap <leader>go :Goyo<CR>
+
+Plug 'reedes/vim-pencil'
+  augroup pencil
+    autocmd!
+    autocmd FileType markdown,mkd,md :SoftPencil
+    autocmd FileType text            :SoftPencil
+  augroup END
+
+Plug 'morhetz/gruvbox'
+
 if has('nvim')
   Plug 'Shougo/deoplete.nvim'
   Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
@@ -75,11 +90,11 @@ let g:deoplete#max_list = 10
 call plug#end()
 
 " Theme
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-" colorscheme solarized
-"set termguicolors
+" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+" colorscheme gruvbox
+" set termguicolors
 " set background=light
-let g:solarized_bold=1
+" let g:solarized_bold=1
 syntax enable
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
@@ -102,13 +117,16 @@ command! -bang -nargs=* Rg
       \ <bang>0)
 
 "Mappings
+let mapleader = "\<Space>"
+
 nnoremap ,f :tabnew %<CR>
 
 nnoremap <Leader>q :wq<CR>
 nnoremap <Leader>x :q!<CR>
 nnoremap <Leader>w :w<CR>
-nnoremap <leader>h :hide<CR>
 nnoremap <leader>o :only<CR>
+
+" git
 nnoremap <leader>g :Gstatus<CR>
 nnoremap <leader>d :Gdiff<CR>
 nnoremap <leader>gb :Gblame<CR>
@@ -117,6 +135,8 @@ nnoremap <silent> <leader>a :ArgWrap<CR>
 nnoremap <leader>m :BTags<CR>
 nnoremap <leader>e :edit!<CR>
 nnoremap <leader>od :!open '%:p:h'<CR>
+nnoremap <F5> :so $MYVIMRC<CR>
+nnoremap <F6> :PlugInstall<CR>
 
 nmap <F3> i<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>
 imap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
@@ -136,6 +156,13 @@ nnoremap <Leader><Right> gt<CR>
 
 " Hide those annoying search highlihghts
 nnoremap cc :let @/ = ""<cr>
+
+" binding.pry
+function! InsertBindingPry()
+  execute ':normal! o' . "binding.pry"
+endfunction
+
+nnoremap ,bp :call InsertBindingPry() <CR>
 
 " NERDTree
 function! MyNerdToggle()
@@ -179,6 +206,7 @@ set shell=zsh
 set tags+=.git/tags,.git/rubytags,.git/bundlertags
 set tagcase=match
 noremap ,gt :!gentags<CR>
+noremap <leader>gt :silent !ctags -R --languages=ruby --exclude=.git --exclude=log --exclude=node_modules . $(bundle list --paths)<CR>
 
 " Convert slashes to backslashes for Windows.
 if has('win32')
