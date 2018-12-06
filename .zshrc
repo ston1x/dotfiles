@@ -95,7 +95,6 @@ export LANG=en_US.UTF-8
 # For a full list of active aliases, run `alias`.
 #
 alias vim="nvim"
-alias psql='postgres'
 alias todo='vim ~/tmp/todo'
 alias notes='vim ~/tmp/notes'
 alias zshrc='vim ~/.zshrc'
