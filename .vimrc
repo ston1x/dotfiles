@@ -51,7 +51,6 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'altercation/vim-colors-solarized'
 Plug 'KKPMW/sacredforest-vim'
 Plug 'tpope/vim-fugitive'
-Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/matchit.zip'
@@ -63,10 +62,10 @@ Plug 'ap/vim-css-color'
 Plug 'mkitt/tabline.vim'
 Plug 'ervandew/supertab'
 Plug 'plasticboy/vim-markdown'
-" Plug 'vim-pandoc/vim-pandoc'
-" Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'tmm1/ripper-tags'
+
 Plug 'junegunn/goyo.vim'
-  nnoremap <leader>go :Goyo<CR>
+nnoremap ,g :Goyo<CR>
 
 Plug 'reedes/vim-pencil'
   augroup pencil
@@ -197,11 +196,8 @@ set foldlevelstart=99
 set foldmethod=indent " foldmethod=syntax is slow
 nnoremap <leader>z zMzv
 
-" RSpec.vim mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-
 "Tags
+" ripper-tags -R --exclude=vendor
 set shell=zsh
 set tags+=.git/tags,.git/rubytags,.git/bundlertags
 set tagcase=match
