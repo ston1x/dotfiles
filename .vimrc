@@ -14,6 +14,9 @@ set mouse=a
 set updatetime=100
 set wildmenu
 
+" Set leader key
+let mapleader = "\<Space>"
+
 " Highlight search results
 set incsearch
 set hlsearch
@@ -65,7 +68,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'tmm1/ripper-tags'
 
 Plug 'junegunn/goyo.vim'
-nnoremap ,g :Goyo<CR>
+nnoremap <leader>go :Goyo<CR>
 
 Plug 'reedes/vim-pencil'
   augroup pencil
@@ -74,7 +77,10 @@ Plug 'reedes/vim-pencil'
     autocmd FileType text            :SoftPencil
   augroup END
 
-Plug 'morhetz/gruvbox'
+" javascript
+Plug 'mxw/vim-jsx'
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'pangloss/vim-javascript'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim'
@@ -114,9 +120,10 @@ command! -bang -nargs=* Rg
       \ 'rg --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
       \ fzf#vim#with_preview(),
       \ <bang>0)
+nnoremap <leader>rg :Rg <C-R><C-W><CR>
+vnoremap <leader>rg y:Rg <C-R>"<CR>
 
 "Mappings
-let mapleader = "\<Space>"
 
 nnoremap ,f :tabnew %<CR>
 
@@ -130,8 +137,10 @@ nnoremap <leader>g :Gstatus<CR>
 nnoremap <leader>d :Gdiff<CR>
 nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>h :browse oldfiles<CR>
+
 nnoremap <silent> <leader>a :ArgWrap<CR>
-nnoremap <leader>m :BTags<CR>
+nnoremap <leader>t :BTags<CR>
 nnoremap <leader>e :edit!<CR>
 nnoremap <leader>od :!open '%:p:h'<CR>
 nnoremap <F5> :so $MYVIMRC<CR>
@@ -185,10 +194,10 @@ let g:fzf_action = {
 
 nnoremap <C-p> :FZF -m<CR>
 
-noremap <up> <C-W>+
-noremap <down> <C-W>-
-noremap <left>  3<C-W><
-noremap <right> 3<C-W>>
+" noremap <up> <C-W>+
+" noremap <down> <C-W>-
+" noremap <left>  3<C-W><
+" noremap <right> 3<C-W>>
 
 " Fold
 set foldenable
@@ -197,11 +206,11 @@ set foldmethod=indent " foldmethod=syntax is slow
 nnoremap <leader>z zMzv
 
 "Tags
-" ripper-tags -R --exclude=vendor
+noremap <leader>gr :silent !ripper-tags -R --exclude=vendor
 set shell=zsh
 set tags+=.git/tags,.git/rubytags,.git/bundlertags
 set tagcase=match
-noremap ,gt :!gentags<CR>
+" noremap ,gt :!gentags<CR>
 noremap <leader>gt :silent !ctags -R --languages=ruby --exclude=.git --exclude=log --exclude=node_modules . $(bundle list --paths)<CR>
 
 " Convert slashes to backslashes for Windows.
