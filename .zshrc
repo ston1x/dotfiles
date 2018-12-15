@@ -105,6 +105,10 @@ alias tmuxconf="vim ~/.tmux.conf"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias be="bundle exec"
 
+# git
+alias gpf="git push fork $(current_branch)"
+alias ggmsg="git commit -m"
+
 export GEM_HOME=$HOME/.gem
 export GEM_PATH=$HOME/.gem
 
