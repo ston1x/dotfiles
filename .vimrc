@@ -51,7 +51,6 @@ Plug 'yggdroot/indentline'
 Plug 'tpope/vim-rails'
 Plug 'ngmy/vim-rubocop'
 Plug 'vim-ruby/vim-ruby'
-Plug 'altercation/vim-colors-solarized'
 Plug 'KKPMW/sacredforest-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
@@ -66,6 +65,10 @@ Plug 'mkitt/tabline.vim'
 Plug 'ervandew/supertab'
 Plug 'plasticboy/vim-markdown'
 Plug 'tmm1/ripper-tags'
+
+" Themes
+Plug 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
 
 Plug 'junegunn/goyo.vim'
 nnoremap <leader>go :Goyo<CR>
@@ -82,6 +85,7 @@ Plug 'mxw/vim-jsx'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'pangloss/vim-javascript'
 
+
 if has('nvim')
   Plug 'Shougo/deoplete.nvim'
   Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
@@ -93,14 +97,6 @@ endif
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#max_list = 10
 call plug#end()
-
-" Theme
-" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-" colorscheme gruvbox
-" set termguicolors
-" set background=light
-" let g:solarized_bold=1
-syntax enable
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
@@ -194,10 +190,10 @@ let g:fzf_action = {
 
 nnoremap <C-p> :FZF -m<CR>
 
-" noremap <up> <C-W>+
-" noremap <down> <C-W>-
-" noremap <left>  3<C-W><
-" noremap <right> 3<C-W>>
+noremap <up> <C-W>+
+noremap <down> <C-W>-
+noremap <left>  3<C-W><
+noremap <right> 3<C-W>>
 
 " Fold
 set foldenable
@@ -262,6 +258,7 @@ endfunction
 nnoremap <leader>s :call OpenTestAlternate()<cr>
 nnoremap <leader>s. :call OpenTestAlternateSplit()<cr>
 
+" Theming
 function! ColorToggle()
   if(&background == "dark")
     set background=light
@@ -271,6 +268,13 @@ function! ColorToggle()
 endfunction
 
 map <Leader>c :call ColorToggle()<CR>
+
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set termguicolors
+set background=dark
+set cursorline
+syntax enable
+colorscheme gruvbox
 
 "Commands
 command! Symbolicate   :%s/"\([a-z_]\+\)"/:\1/gc
@@ -285,4 +289,3 @@ vmap ,:  :Tabularize /:\zs/l0l1<CR>
 vmap ,": :Tabularize /":\zs/l0l1<CR>
 vmap ,=  :Tabularize /=<CR>
 vmap ,=> :Tabularize /=/l1l1<CR>
-
