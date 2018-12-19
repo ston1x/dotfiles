@@ -17,8 +17,9 @@ function random_emoji {
   echo -n "$EMOJI[$RANDOM%$#EMOJI+1]"
 }
 
-ZSH_THEME="spaceship"
-SPACESHIP_CHAR_SYMBOL="$(random_emoji) "
+ZSH_THEME="af-magic"
+# ZSH_THEME="spaceship"
+#SPACESHIP_CHAR_SYMBOL="$(random_emoji) "
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -105,6 +106,10 @@ alias tmuxconf="vim ~/.tmux.conf"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias be="bundle exec"
 
+# SSH activity
+alias spy="watch -n1 who"
+alias spyproc="watch -n1 ps u"
+
 # git
 alias gpf="git push fork $(current_branch)"
 alias ggmsg="git commit -m"
@@ -117,3 +122,5 @@ export PATH="$PATH:$GEM_HOME/bin"
 
 # Rust binaries
 export PATH="$HOME/.cargo/bin:$PATH"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
