@@ -69,6 +69,7 @@ Plug 'tmm1/ripper-tags'
 " Themes
 Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
+Plug 'junegunn/seoul256.vim'
 
 Plug 'junegunn/goyo.vim'
 nnoremap <leader>go :Goyo<CR>
@@ -266,8 +267,17 @@ function! ColorToggle()
     set background=dark
   endif
 endfunction
-
 map <Leader>c :call ColorToggle()<CR>
+
+function! SetSeoul256()
+  colorscheme seoul256
+  let g:seoul256_background = 255
+  set background=light
+endfunction
+
+map ,1 :call SetSeoul256()<CR>
+map ,2 :colo gruvbox<CR>
+
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
