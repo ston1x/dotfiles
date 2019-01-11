@@ -275,16 +275,24 @@ function! SetSeoul256()
   set background=light
 endfunction
 
+function! SetSolarized()
+  let g:solarized_termcolors=256
+  colorscheme solarized
+  set background=light
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endfunction
+
 map ,1 :call SetSeoul256()<CR>
 map ,2 :colo gruvbox<CR>
+map ,3 :call SetSolarized()<CR>
 
-
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-set termguicolors
-set background=dark
-set cursorline
+colorscheme solarized
+set background=light
+let g:solarized_bold=1
 syntax enable
-colorscheme gruvbox
+
+" set termguicolors
+set cursorline
 
 "Commands
 command! Symbolicate   :%s/"\([a-z_]\+\)"/:\1/gc
