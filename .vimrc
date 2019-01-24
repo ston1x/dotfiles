@@ -180,9 +180,11 @@ endfunction
 nnoremap \ :call MyNerdToggle()<CR>
 let NERDTreeShowHidden=1
 
+" RuboCop
 let g:vimrubocop_keymap = 0
 nmap <Leader>r :RuboCop -R<CR>
 
+" fzf
 let g:fzf_action = {
       \ 'ctrl-t': 'tab split',
       \ 'ctrl-s': 'split',
@@ -201,6 +203,16 @@ set foldenable
 set foldlevelstart=99
 set foldmethod=indent " foldmethod=syntax is slow
 nnoremap <leader>z zMzv
+
+" Markdown
+function! MarkdownConcealToggle()
+  if(&conceallevel == 2)
+    set conceallevel=0
+  else
+    set conceallevel=2
+  endif
+endfunction
+nnoremap <leader>gc :call MarkdownConcealToggle()<CR>
 
 "Tags
 noremap <leader>gr :silent !ripper-tags -R --exclude=vendor
@@ -271,14 +283,15 @@ map <Leader>c :call ColorToggle()<CR>
 
 function! SetSeoul256()
   colorscheme seoul256
-  let g:seoul256_background = 255
+  let g:seoul256_background = 256
   set background=light
 endfunction
 
 function! SetSolarized()
-  let g:solarized_termcolors=256
+  " let g:solarized_termcolors=256
   colorscheme solarized
   set background=light
+  syntax enable
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endfunction
 
