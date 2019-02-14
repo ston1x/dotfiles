@@ -17,6 +17,7 @@ function random_emoji {
   echo -n "$EMOJI[$RANDOM%$#EMOJI+1]"
 }
 
+# ZSH_THEME="fino"
 ZSH_THEME="spaceship"
 SPACESHIP_CHAR_SYMBOL="$(random_emoji) "
 
@@ -89,23 +90,18 @@ export LANG=en_US.UTF-8
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
+# ALIASES
 alias vim="nvim"
 alias todo='vim ~/tmp/todo'
 alias notes='vim ~/tmp/notes'
 alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
-# alias vim='/usr/local/Cellar/vim/8.1.0150/bin/vim'
 alias alaconf="vim $HOME/.config/alacritty/alacritty.yml"
 alias tmuxconf="vim ~/.tmux.conf"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias be="bundle exec"
 
-# git
+## git
 alias gpf="git push fork $(current_branch)"
 alias ggmsg="git commit -m"
 

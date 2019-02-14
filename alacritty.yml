@@ -11,25 +11,25 @@ env:
   # Note that some xterm terminfo databases don't declare support for italics.
   # You can verify this by checking for the presence of `smso` and `sitm` in
   # `infocmp xterm-256color`.
-  # TERM: xterm-256color
+  TERM: xterm-256color
 
 window:
   # Window dimensions in character columns and lines
   # (changes require restart)
   dimensions:
-    columns: 130
-    lines: 50
+    columns: 110
+    lines: 35
 
   # Adds this many blank pixels of padding around the window
   # Units are physical pixels; this is not DPI aware.
   # (change requires restart)
   padding:
     x: 2
-    y: 2
+    y: 25
 
   # Window decorations
   # Setting this to false will result in window without borders and title bar.
-  decorations: true
+  decorations: transparent
 
 # Display tabs using this many cells (changes require restart)
 tabspaces: 8
@@ -59,6 +59,9 @@ font:
 
   # Point size of the font
   size: 14.0
+  thin_strokes: true
+  hinting: true
+  antialias: true
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
@@ -75,7 +78,7 @@ font:
 
   # Scale the font size based on the monitor's DPI. This will lead to bigger text on HiDPI
   # screens and make reading text a little easier.
-  scale_with_dpi: true
+  WININT_HIDPI_FACTOR: true
 
   # OS X only: use thin stroke font rendering. Thin strokes are suitable
   # for retina displays, but for non-retina you probably want this set to
@@ -84,10 +87,6 @@ font:
 
 # Should display the render timer
 render_timer: false
-
-# Use custom cursor colors. If true, display the cursor in the cursor.foreground
-# and cursor.background colors, otherwise invert the colors of the cursor.
-custom_cursor_colors: false
 
 # Colors (Solarized Light)
 colors:
@@ -178,20 +177,20 @@ mouse:
 
   # Faux Scrollback
   #
-  # The `faux_scrollback_lines` setting controls the number
+  # The `faux_scrolling_lines` setting controls the number
   # of lines the terminal should scroll when the alternate
   # screen buffer is active. This is used to allow mouse
   # scrolling for applications like `man`.
   #
-  # To disable this completely, set `faux_scrollback_lines` to 0.
-  faux_scrollback_lines: 1
+  # To disable this completely, set `faux_scrolling_lines` to 0.
+  faux_scrolling_lines: 1
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
 
 dynamic_title: true
 
-hide_cursor_when_typing: false
+mouse.hide_when_typing: false
 
 # Style of the cursor
 #
@@ -199,8 +198,8 @@ hide_cursor_when_typing: false
 # - Block
 # - Underline
 # - Beam
-cursor_style: Block
-# cursor_style: Underline
+cursor.style: Block
+# cursor.style: Underline
 
 # Live config reload (changes require restart)
 live_config_reload: true
