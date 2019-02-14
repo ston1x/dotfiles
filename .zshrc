@@ -11,10 +11,14 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Set name of the theme to load. If you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-EMOJI=(💩 🐦 🚀 🐞 🎨 🍕 🐭 👽 ☕️ 🔬 💀 🐷 🐼 🐶 🐸 🐧 🐳 🍔 🍣 🍻 🔮 💰 💎 💾 💜 🍪 🌞 🌍 🐌 🐓 🍄 🐾 🐛 💚 🐬 🐤 👀)
+EMOJI=(💩 🐦 🚀 🐞 🎨 🍕 🐭 👽 ☕️ 🔬 💀 🐷 🐼 🐶 🐸 🐧 🐳 🍔 🍣 🍻 🔮 💰 💎 💾  🍪 🌞 🌍 ✨ ☁️ 💦 🐽 🐝 🦄 🌴 🍏 🍎 🍊 🍋 🍉 🍒 🥝 🥕 🍯 ⛵️ 🏝 🐌 🐓 🍄 🐾 🐛 💚 🐬 🐤 👀)
 
 function random_emoji {
   echo -n "$EMOJI[$RANDOM%$#EMOJI+1]"
+}
+
+function stash_note {
+  echo $(date; cat ~/tmp/note) >> ~/tmp/notes && cat /dev/null > ~/tmp/note
 }
 
 # ZSH_THEME="fino"
@@ -79,10 +83,7 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 # Set language environment
 export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-  if [[ -n $SSH_CONNECTION ]]; then
-    export EDITOR='vim'
-  fi
+export EDITOR=vim
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -94,6 +95,7 @@ export LANG=en_US.UTF-8
 alias vim="nvim"
 alias todo='vim ~/tmp/todo'
 alias notes='vim ~/tmp/notes'
+alias note='vim ~/tmp/note && stash_note'
 alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
 alias alaconf="vim $HOME/.config/alacritty/alacritty.yml"
