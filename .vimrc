@@ -42,6 +42,7 @@ filetype plugin on    " Enable filetype-specific plugins
 
 autocmd FileType ruby compiler ruby
 
+" PLUGINS
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -51,7 +52,6 @@ Plug 'yggdroot/indentline'
 Plug 'tpope/vim-rails'
 Plug 'ngmy/vim-rubocop'
 Plug 'vim-ruby/vim-ruby'
-Plug 'KKPMW/sacredforest-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
@@ -62,6 +62,7 @@ Plug 'godlygeek/tabular'
 Plug 'rrethy/vim-illuminate'
 Plug 'ap/vim-css-color'
 Plug 'mkitt/tabline.vim'
+Plug 'w0rp/ale'
 Plug 'ervandew/supertab'
 Plug 'plasticboy/vim-markdown'
 Plug 'tmm1/ripper-tags'
@@ -71,6 +72,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/seoul256.vim'
 
+" Comfortable typing
 Plug 'junegunn/goyo.vim'
 nnoremap <leader>go :Goyo<CR>
 
@@ -87,6 +89,7 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'pangloss/vim-javascript'
 
 
+" deoplete
 if has('nvim')
   Plug 'Shougo/deoplete.nvim'
   Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
@@ -96,7 +99,7 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#max_list = 10
+let g:deoplete#max_list = 1
 call plug#end()
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
@@ -183,6 +186,16 @@ let NERDTreeShowHidden=1
 " RuboCop
 let g:vimrubocop_keymap = 0
 nmap <Leader>r :RuboCop -R<CR>
+
+" Linting with ale
+let g:ale_linters = {'ruby': ['rubocop']}
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+let g:ale_pattern_options = {'.*\.gem.*\.rb$|.*\.rubies.*\.rb$': {'ale_enabled': 0}}
+let g:ale_set_highlights = 0
+
+" Remove trailing spaces on save
+  autocmd BufWritePre * :%s/\s\+$//e
 
 " fzf
 let g:fzf_action = {
@@ -299,12 +312,10 @@ map ,1 :call SetSeoul256()<CR>
 map ,2 :colo gruvbox<CR>
 map ,3 :call SetSolarized()<CR>
 
+" Set theme
 colorscheme solarized
 set background=light
-let g:solarized_bold=1
 syntax enable
-
-" set termguicolors
 set cursorline
 
 "Commands
