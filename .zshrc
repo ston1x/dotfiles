@@ -21,8 +21,20 @@ function stash_note {
   echo $(date; cat ~/tmp/note) >> ~/tmp/notes && cat /dev/null > ~/tmp/note
 }
 
+function run() {
+    number=$1
+    shift
+    for i in `seq $number`; do
+      $@
+    done
+}
+
+# ZSH_THEME="flazz"
+ZSH_THEME="sunrise"
+# ZSH_THEME="wuffers"
+# ZSH_THEME="robbyrussell"
 # ZSH_THEME="fino"
-ZSH_THEME="spaceship"
+# ZSH_THEME="spaceship"
 SPACESHIP_CHAR_SYMBOL="$(random_emoji) "
 
 # Uncomment the following line to use case-sensitive completion.
