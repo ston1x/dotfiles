@@ -114,6 +114,7 @@ alias alaconf="vim $HOME/.config/alacritty/alacritty.yml"
 alias tmuxconf="vim ~/.tmux.conf"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias be="bundle exec"
+alias bes="bundle exec sidekiq -C config/sidekiq.yml"
 
 ## git
 alias gpf="git push fork $(current_branch)"
