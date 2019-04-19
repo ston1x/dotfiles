@@ -17,19 +17,18 @@ window:
   # Window dimensions in character columns and lines
   # (changes require restart)
   dimensions:
-    columns: 162
-    lines: 39
+    columns: 145
+    lines: 50
 
   # Adds this many blank pixels of padding around the window
   # Units are physical pixels; this is not DPI aware.
   # (change requires restart)
   padding:
-    x: 2
-    y: 25
+    x: 0
 
   # Window decorations
   # Setting this to false will result in window without borders and title bar.
-  decorations: transparent
+  decorations: full
 
 # Display tabs using this many cells (changes require restart)
 tabspaces: 8
@@ -174,6 +173,7 @@ mouse:
   # or triple click.
   double_click: { threshold: 300 }
   triple_click: { threshold: 300 }
+  hide_when_typing: true
 
   # Faux Scrollback
   #
@@ -189,8 +189,6 @@ selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
 
 dynamic_title: true
-
-mouse.hide_when_typing: false
 
 # Style of the cursor
 #
