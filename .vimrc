@@ -3,6 +3,11 @@ set number
 set noswapfile
 set relativenumber
 
+" Colemak to QWERTY for hjkl
+" noremap n j
+" noremap e k
+" noremap i l
+
 " Clipboard
 set clipboard=unnamed
 if has('unnamedplus')
@@ -70,7 +75,6 @@ Plug 'tmm1/ripper-tags'
 " Themes
 Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
-Plug 'junegunn/seoul256.vim'
 
 " Comfortable typing
 Plug 'junegunn/goyo.vim'
@@ -143,6 +147,7 @@ nnoremap <silent> <leader>a :ArgWrap<CR>
 nnoremap <leader>t :BTags<CR>
 nnoremap <leader>e :edit!<CR>
 nnoremap <leader>od :!open '%:p:h'<CR>
+nnoremap <F4> :tabedit ~/.vimrc<CR>
 nnoremap <F5> :so $MYVIMRC<CR>
 nnoremap <F6> :PlugInstall<CR>
 
@@ -161,6 +166,12 @@ nnoremap <Leader>8 8gt<CR>
 nnoremap <Leader>9 9gt<CR>
 nnoremap <Leader><Left> gT<CR>
 nnoremap <Leader><Right> gt<CR>
+
+" Resizing splits
+noremap <up> <C-W>+
+noremap <down> <C-W>-
+noremap <left>  3<C-W><
+noremap <right> 3<C-W>>
 
 " Hide those annoying search highlihghts
 nnoremap cc :let @/ = ""<cr>
@@ -183,9 +194,8 @@ endfunction
 nnoremap \ :call MyNerdToggle()<CR>
 let NERDTreeShowHidden=1
 
-" RuboCop
-let g:vimrubocop_keymap = 0
-nmap <Leader>r :RuboCop -R<CR>
+" Run ruby files
+autocmd FileType ruby nmap <leader>r :!ruby %<cr>
 
 " Linting with ale
 let g:ale_linters = {'ruby': ['rubocop']}
@@ -205,11 +215,6 @@ let g:fzf_action = {
       \}
 
 nnoremap <C-p> :FZF -m<CR>
-
-noremap <up> <C-W>+
-noremap <down> <C-W>-
-noremap <left>  3<C-W><
-noremap <right> 3<C-W>>
 
 " Fold
 set foldenable
@@ -293,24 +298,6 @@ function! ColorToggle()
   endif
 endfunction
 map <Leader>c :call ColorToggle()<CR>
-
-function! SetSeoul256()
-  colorscheme seoul256
-  let g:seoul256_background = 256
-  set background=light
-endfunction
-
-function! SetSolarized()
-  " let g:solarized_termcolors=256
-  colorscheme solarized
-  set background=light
-  syntax enable
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endfunction
-
-map ,1 :call SetSeoul256()<CR>
-map ,2 :colo gruvbox<CR>
-map ,3 :call SetSolarized()<CR>
 
 " Set theme
 colorscheme solarized
