@@ -14,6 +14,10 @@ function stash_note {
   echo $(date; cat ~/tmp/note) >> ~/tmp/notes && cat /dev/null > ~/tmp/note
 }
 
+function emoji() {
+  SPACESHIP_CHAR_SYMBOL="$1 "
+}
+
 function run() {
     number=$1
     shift
@@ -55,21 +59,30 @@ export EDITOR=vim
 
 # ALIASES
 alias vim="nvim"
-alias todo='vim ~/tmp/todo'
-alias notes='vim ~/tmp/notes'
-alias note='vim ~/tmp/note && stash_note'
 alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
-alias alaconf="vim $HOME/.config/alacritty/alacritty.yml"
+alias alaconf="vim ~/.config/alacritty/alacritty.yml"
 alias tmuxconf="vim ~/.tmux.conf"
 alias ohmyzsh="vim ~/.oh-my-zsh"
+
+## bundler and rails
 alias be="bundle exec"
 alias bes="bundle exec sidekiq -C config/sidekiq.yml"
-alias schedule=" ruby /Users/ston1x/dev/ti31-schedule/fetch_schedule.rb"
+alias ber="bundle exec rspec"
+alias rs="rails server"
+alias rsp="rails server -p"
+alias rc="rails console"
+alias rr="rails routes"
 
 ## git
 alias gpf="git push fork $(current_branch)"
 alias ggmsg="git commit -m"
+
+# other stuff
+alias schedule="ruby ~/dev/ti31-schedule/fetch_schedule.rb"
+alias todo='vim ~/tmp/todo'
+alias notes='vim ~/tmp/notes'
+alias note='vim ~/tmp/note && stash_note'
 
 export GEM_HOME=$HOME/.gem
 export GEM_PATH=$HOME/.gem
