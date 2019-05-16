@@ -17,14 +17,14 @@ window:
   # Window dimensions in character columns and lines
   # (changes require restart)
   dimensions:
-    columns: 145
-    lines: 50
+    columns: 83
+    lines: 26
 
   # Adds this many blank pixels of padding around the window
   # Units are physical pixels; this is not DPI aware.
   # (change requires restart)
   padding:
-    x: 0
+    x: 5
     y: 20
 
   # Window decorations
@@ -41,19 +41,19 @@ draw_bold_text_with_bright_colors: true
 font:
   # The normal (roman) font face to use.
   normal:
-    family: Fira Code
+    family: Iosevka
     # Style can be specified to pick a specific face.
     style: Regular
 
   # The bold font face
   bold:
-    family: Fira Code
+    family: Iosevka
     # Style can be specified to pick a specific face.
     # style: Bold
 
   # The italic font face
   italic:
-    family: Fira Code
+    family: Iosevka
     # Style can be specified to pick a specific face.
     # style: Italic
 
@@ -162,7 +162,8 @@ colors:
     # background: '0x282828'
     # background: '0x32302f'
     background: '0x262626'
-    foreground: '0xebdbb2'
+    # foreground: '0xebdbb2'
+    foreground: '0xafa489'
 
   # Normal colors
   normal:
@@ -173,7 +174,7 @@ colors:
     blue:    '0x458588'
     magenta: '0xb16286'
     cyan:    '0x689d6a'
-    white: '0x423d37'
+    white:   '0x423d37'
 
   # Bright colors
   bright:
@@ -315,23 +316,24 @@ shell:
 #   `command` must be a map containing a `program` string, and `args` array of
 #     strings. For example:
 #     - { ... , command: { program: "alacritty", args: ["-e", "vttest"] } }
+
 key_bindings:
   - { key: Q,        mods: Command, action: Quit                         }
   - { key: V,        mods: Command, action: Paste                        }
   - { key: C,        mods: Command, action: Copy                         }
-  - { key: Key1,     mods: Command, chars: "\x01\x31" }
-  - { key: Key2,     mods: Command, chars: "\x01\x32" }
-  - { key: Key3,     mods: Command, chars: "\x01\x33" }
-  - { key: Key4,     mods: Command, chars: "\x01\x34" }
-  - { key: Key5,     mods: Command, chars: "\x01\x35" }
-  - { key: Key6,     mods: Command, chars: "\x01\x36" }
-  - { key: Key7,     mods: Command, chars: "\x01\x37" }
-  - { key: Key8,     mods: Command, chars: "\x01\x38" }
-  - { key: Key9,     mods: Command, chars: "\x01\x39" }
-  - { key: T,        mods: Command, chars: "\x01\x63" }
-  - { key: W,        mods: Command, chars: "\x01\x78" }
-  - { key: F,        mods: Control, chars: "\x01\x66" }
-  - { key: O,        mods: Command, chars: "\x01\x61" }
+  - { key: Key1,     mods: Command, chars: "\x01\x31"                    }
+  - { key: Key2,     mods: Command, chars: "\x01\x32"                    }
+  - { key: Key3,     mods: Command, chars: "\x01\x33"                    }
+  - { key: Key4,     mods: Command, chars: "\x01\x34"                    }
+  - { key: Key5,     mods: Command, chars: "\x01\x35"                    }
+  - { key: Key6,     mods: Command, chars: "\x01\x36"                    }
+  - { key: Key7,     mods: Command, chars: "\x01\x37"                    }
+  - { key: Key8,     mods: Command, chars: "\x01\x38"                    }
+  - { key: Key9,     mods: Command, chars: "\x01\x39"                    }
+  - { key: T,        mods: Command, chars: "\x01\x63"                    }
+  - { key: W,        mods: Command, chars: "\x01\x78"                    }
+  - { key: F,        mods: Control, chars: "\x01\x66"                    }
+  - { key: O,        mods: Command, chars: "\x01\x61"                    }
   - { key: Home,                    chars: "\x1b[H",   mode: ~AppCursor  }
   - { key: Home,                    chars: "\x1b[1~",  mode: AppCursor   }
   - { key: End,                     chars: "\x1b[F",   mode: ~AppCursor  }
