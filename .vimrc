@@ -1,6 +1,7 @@
 " GENERAL VIM SETTINGS
 set number
 set noswapfile
+set undofile
 set relativenumber
 
 " Colemak to QWERTY for hjkl
@@ -17,7 +18,6 @@ endif
 set mouse=a
 " set laststatus=0
 set updatetime=100
-set wildmenu
 
 " Set leader key
 let mapleader = "\<Space>"
@@ -52,6 +52,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'mbbill/undotree'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'yggdroot/indentline'
 Plug 'tpope/vim-rails'
@@ -68,17 +69,19 @@ Plug 'rrethy/vim-illuminate'
 Plug 'ap/vim-css-color'
 Plug 'mkitt/tabline.vim'
 Plug 'w0rp/ale'
-Plug 'ervandew/supertab'
 Plug 'plasticboy/vim-markdown'
 Plug 'tmm1/ripper-tags'
 
 " Themes
 Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
+Plug 'joshdick/onedark.vim'
+Plug 'squarefrog/tomorrow-night.vim'
 
 " Comfortable typing
 Plug 'junegunn/goyo.vim'
 nnoremap <leader>go :Goyo<CR>
+nnoremap <leader>u :UndotreeToggle<CR>
 
 Plug 'reedes/vim-pencil'
   augroup pencil
@@ -102,7 +105,7 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
-let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 0
 let g:deoplete#max_list = 1
 call plug#end()
 
@@ -115,9 +118,9 @@ let g:rg_command = '
   \ -g "!{.git,node_modules,vendor,log,swp,tmp,venv,__pychache__}/*" '
 command! -bang -nargs=* F
                  \ call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1,
-                 \ fzf#vim#with_preview(),
+                 \ fzf#vim#with_preview({'options': '--bind ctrl-a:select-all,ctrl-d:deselect-all'}, 'right:50%', '?'),
                  \ <bang>0)
-nnoremap <leader>f :Rg<CR>
+nnoremap <leader>f :F<CR>
 
 command! -bang -nargs=* Rg
       \ call fzf#vim#grep(
@@ -207,6 +210,9 @@ let g:ale_set_highlights = 0
 " Remove trailing spaces on save
   autocmd BufWritePre * :%s/\s\+$//e
 
+" Run rubocop for rails
+nnoremap <leader>ru :RuboCop()<CR>
+
 " fzf
 let g:fzf_action = {
       \ 'ctrl-t': 'tab split',
@@ -233,7 +239,7 @@ endfunction
 nnoremap <leader>gc :call MarkdownConcealToggle()<CR>
 
 "Tags
-noremap <leader>gr :silent !ripper-tags -R --exclude=vendor
+noremap <leader>gr :silent !ripper-tags -R --exclude=vendor --exclude=log
 set shell=zsh
 set tags+=.git/tags,.git/rubytags,.git/bundlertags
 set tagcase=match
@@ -268,7 +274,7 @@ function! AlternateForCurrentFile()
   let new_file = current_file
   let in_spec = match(current_file, '^spec/') != -1
   let going_to_spec = !in_spec
-  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<workers\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1
+  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<lib\>') != -1 || match(current_file, '\<workers\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1
   if going_to_spec
     if in_app
       let new_file = substitute(new_file, '^app/', '', '')
@@ -301,6 +307,7 @@ map <Leader>c :call ColorToggle()<CR>
 
 " Set theme
 colorscheme solarized
+let g:solarized_bold=1
 set background=light
 syntax enable
 set cursorline
