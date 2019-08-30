@@ -2,7 +2,7 @@
 set number
 set noswapfile
 set undofile
-set relativenumber
+" set relativenumber
 
 " Colemak to QWERTY for hjkl
 " noremap n j
@@ -25,6 +25,7 @@ let mapleader = "\<Space>"
 " Highlight search results
 set incsearch
 set hlsearch
+" set nowrapscan
 
 " Ignore case when searching
 set ignorecase
@@ -77,13 +78,15 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 Plug 'squarefrog/tomorrow-night.vim'
+Plug 'nightsense/seabird'
 
 " Comfortable typing
 Plug 'junegunn/goyo.vim'
-nnoremap <leader>go :Goyo<CR>
+Plug 'reedes/vim-pencil'
+Plug 'vim-latex/vim-latex'
+nnoremap <leader>, :Goyo<CR>
 nnoremap <leader>u :UndotreeToggle<CR>
 
-Plug 'reedes/vim-pencil'
   augroup pencil
     autocmd!
     autocmd FileType markdown,mkd,md :SoftPencil
@@ -118,31 +121,31 @@ let g:rg_command = '
   \ -g "!{.git,node_modules,vendor,log,swp,tmp,venv,__pychache__}/*" '
 command! -bang -nargs=* F
                  \ call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1,
-                 \ fzf#vim#with_preview({'options': '--bind ctrl-a:select-all,ctrl-d:deselect-all'}, 'right:50%', '?'),
+                 \ fzf#vim#with_preview({'options': '--bind ctrl-a:select-all,ctrl-d:deselect-all --delimiter : --nth 4..'}, 'right:50%', '?'),
                  \ <bang>0)
-nnoremap <leader>f :F<CR>
+nnoremap <leader>f :Rg<CR>
 
 command! -bang -nargs=* Rg
       \ call fzf#vim#grep(
       \ 'rg --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
       \ fzf#vim#with_preview(),
       \ <bang>0)
-nnoremap <leader>rg :Rg <C-R><C-W><CR>
 vnoremap <leader>rg y:Rg <C-R>"<CR>
 
 "Mappings
 
 nnoremap ,f :tabnew %<CR>
+nnoremap ,v :vsplit %<CR>
 
 nnoremap <Leader>q :wq<CR>
 nnoremap <Leader>x :q!<CR>
 nnoremap <Leader>w :w<CR>
-nnoremap <leader>o :only<CR>
+" nnoremap <leader>o :only<CR>
 
 " git
 nnoremap <leader>g :Gstatus<CR>
 nnoremap <leader>d :Gdiff<CR>
-nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>l :Gblame<CR> "lame
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>h :browse oldfiles<CR>
 
@@ -198,7 +201,7 @@ nnoremap \ :call MyNerdToggle()<CR>
 let NERDTreeShowHidden=1
 
 " Run ruby files
-autocmd FileType ruby nmap <leader>r :!ruby %<cr>
+" autocmd FileType ruby nmap <leader>r :!ruby %<cr>
 
 " Linting with ale
 let g:ale_linters = {'ruby': ['rubocop']}
@@ -209,9 +212,6 @@ let g:ale_set_highlights = 0
 
 " Remove trailing spaces on save
   autocmd BufWritePre * :%s/\s\+$//e
-
-" Run rubocop for rails
-nnoremap <leader>ru :RuboCop()<CR>
 
 " fzf
 let g:fzf_action = {
@@ -236,15 +236,14 @@ function! MarkdownConcealToggle()
     set conceallevel=2
   endif
 endfunction
-nnoremap <leader>gc :call MarkdownConcealToggle()<CR>
+nnoremap <leader>mc :call MarkdownConcealToggle()<CR>
 
 "Tags
-noremap <leader>gr :silent !ripper-tags -R --exclude=vendor --exclude=log
+noremap <leader>rt :silent !ripper-tags -R --exclude=log
 set shell=zsh
 set tags+=.git/tags,.git/rubytags,.git/bundlertags
 set tagcase=match
 " noremap ,gt :!gentags<CR>
-noremap <leader>gt :silent !ctags -R --languages=ruby --exclude=.git --exclude=log --exclude=node_modules . $(bundle list --paths)<CR>
 
 " Convert slashes to backslashes for Windows.
 if has('win32')
@@ -306,9 +305,10 @@ endfunction
 map <Leader>c :call ColorToggle()<CR>
 
 " Set theme
-colorscheme solarized
 let g:solarized_bold=1
-set background=light
+set background=dark
+colo gruvbox
+" set termguicolors
 syntax enable
 set cursorline
 
