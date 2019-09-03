@@ -112,6 +112,8 @@ let g:deoplete#enable_at_startup = 0
 let g:deoplete#max_list = 1
 call plug#end()
 
+au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
 "using rg for find in project
@@ -128,7 +130,7 @@ nnoremap <leader>f :Rg<CR>
 command! -bang -nargs=* Rg
       \ call fzf#vim#grep(
       \ 'rg --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
-      \ fzf#vim#with_preview(),
+      \ fzf#vim#with_preview({'options': '--bind ctrl-a:select-all,ctrl-d:deselect-all'}, 'right:50%', '?'),
       \ <bang>0)
 vnoremap <leader>rg y:Rg <C-R>"<CR>
 
@@ -145,7 +147,7 @@ nnoremap <Leader>w :w<CR>
 " git
 nnoremap <leader>g :Gstatus<CR>
 nnoremap <leader>d :Gdiff<CR>
-nnoremap <leader>l :Gblame<CR> "lame
+nnoremap <leader>l :Gblame<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>h :browse oldfiles<CR>
 
@@ -306,11 +308,11 @@ map <Leader>c :call ColorToggle()<CR>
 
 " Set theme
 let g:solarized_bold=1
-set background=dark
-colo gruvbox
+set cursorline
+colo solarized
+set background=light
 " set termguicolors
 syntax enable
-set cursorline
 
 "Commands
 command! Symbolicate   :%s/"\([a-z_]\+\)"/:\1/gc
