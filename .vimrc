@@ -2,7 +2,7 @@
 set number
 set noswapfile
 set undofile
-" set relativenumber
+set relativenumber
 
 " Colemak to QWERTY for hjkl
 " noremap n j
@@ -58,10 +58,10 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'yggdroot/indentline'
 Plug 'tpope/vim-rails'
 Plug 'ngmy/vim-rubocop'
-Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
+let g:gitgutter_map_keys = 0
 Plug 'vim-scripts/matchit.zip'
 Plug 'mileszs/ack.vim'
 Plug 'foosoft/vim-argwrap'
@@ -70,8 +70,12 @@ Plug 'rrethy/vim-illuminate'
 Plug 'ap/vim-css-color'
 Plug 'mkitt/tabline.vim'
 Plug 'w0rp/ale'
-Plug 'plasticboy/vim-markdown'
 Plug 'tmm1/ripper-tags'
+
+" Highlight
+Plug 'vim-ruby/vim-ruby'
+Plug 'plasticboy/vim-markdown'
+Plug 'slim-template/vim-slim'
 
 " Themes
 Plug 'altercation/vim-colors-solarized'
@@ -79,11 +83,13 @@ Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 Plug 'squarefrog/tomorrow-night.vim'
 Plug 'nightsense/seabird'
+Plug 'sonph/onehalf'
+Plug 'KeitaNakamura/neodark.vim'
 
-" Comfortable typing
-Plug 'junegunn/goyo.vim'
-Plug 'reedes/vim-pencil'
-Plug 'vim-latex/vim-latex'
+ " Comfortable typing
+ Plug 'junegunn/goyo.vim'
+ Plug 'reedes/vim-pencil'
+ " Plug 'vim-latex/vim-latex'
 nnoremap <leader>, :Goyo<CR>
 nnoremap <leader>u :UndotreeToggle<CR>
 
@@ -94,9 +100,9 @@ nnoremap <leader>u :UndotreeToggle<CR>
   augroup END
 
 " javascript
-Plug 'mxw/vim-jsx'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plug 'pangloss/vim-javascript'
+" Plug 'mxw/vim-jsx'
+" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+" Plug 'pangloss/vim-javascript'
 
 
 " deoplete
@@ -123,7 +129,7 @@ let g:rg_command = '
   \ -g "!{.git,node_modules,vendor,log,swp,tmp,venv,__pychache__}/*" '
 command! -bang -nargs=* F
                  \ call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1,
-                 \ fzf#vim#with_preview({'options': '--bind ctrl-a:select-all,ctrl-d:deselect-all --delimiter : --nth 4..'}, 'right:50%', '?'),
+                 \ fzf#vim#with_preview({'options': '--bind ctrl-a:select-all,ctrl-d:deselect-all'}, 'right:50%', '?'),
                  \ <bang>0)
 nnoremap <leader>f :Rg<CR>
 
@@ -148,8 +154,9 @@ nnoremap <Leader>w :w<CR>
 nnoremap <leader>g :Gstatus<CR>
 nnoremap <leader>d :Gdiff<CR>
 nnoremap <leader>l :Gblame<CR>
+nnoremap <leader>co :Commits<CR>
 nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>h :browse oldfiles<CR>
+nnoremap <leader>h :History<CR>
 
 nnoremap <silent> <leader>a :ArgWrap<CR>
 nnoremap <leader>t :BTags<CR>
@@ -275,7 +282,7 @@ function! AlternateForCurrentFile()
   let new_file = current_file
   let in_spec = match(current_file, '^spec/') != -1
   let going_to_spec = !in_spec
-  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<lib\>') != -1 || match(current_file, '\<workers\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1
+  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<lib\>') != -1 || match(current_file, '\<workers\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1 || match(current_file, '\<services\>') != -1
   if going_to_spec
     if in_app
       let new_file = substitute(new_file, '^app/', '', '')
@@ -309,9 +316,14 @@ map <Leader>c :call ColorToggle()<CR>
 " Set theme
 let g:solarized_bold=1
 set cursorline
-colo solarized
-set background=light
 " set termguicolors
+set bg=light
+" let g:neodark#background = '#202020'
+" let g:neodark#terminal_transparent = 1
+colo solarized
+" let g:gruvbox_contrast_dark='medium'
+" let g:gruvbox_bold=1
+
 syntax enable
 
 "Commands
@@ -327,3 +339,54 @@ vmap ,:  :Tabularize /:\zs/l0l1<CR>
 vmap ,": :Tabularize /":\zs/l0l1<CR>
 vmap ,=  :Tabularize /=<CR>
 vmap ,=> :Tabularize /=/l1l1<CR>
+
+
+
+
+" Runinng tests
+command! -nargs=* VT vsplit | terminal <args>
+command! -nargs=* ST split | terminal <args>
+
+nnoremap <leader>. :call OpenTestAlternate()<cr>
+nnoremap <leader>s. :call OpenTestAlternateSplit()<cr>
+
+function! RunTests(filename)
+    " Write the file and run tests for the given filename
+    :w
+    :silent !echo;echo;echo;echo;echo
+    exec ":ST time bundle exec rspec " . a:filename
+endfunction
+
+function! SetTestFile()
+    " Set the spec file that tests will be run for.
+    let t:grb_test_file=@%
+endfunction
+
+function! RunTestFile(...)
+    if a:0
+        let command_suffix = a:1
+    else
+        let command_suffix = ""
+    endif
+
+    " Run the tests for the previously-marked file.
+    let in_spec_file = match(expand("%"), '_spec.rb$') != -1
+    if in_spec_file
+        call SetTestFile()
+    elseif !exists("t:grb_test_file")
+        return
+    end
+    call RunTests(t:grb_test_file . command_suffix)
+endfunction
+
+function! RunNearestTest()
+    let spec_line_number = line('.')
+    call RunTestFile(":" . spec_line_number)
+endfunction
+
+" Run this file
+map ,m :call RunTestFile()<cr>
+" Run only the example under the cursor
+map ,. :call RunNearestTest()<cr>
+" Run all test files
+map ,a :call RunTests('spec')<cr>
