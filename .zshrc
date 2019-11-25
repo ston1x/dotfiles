@@ -1,5 +1,6 @@
  # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="/usr/local/sbin:$PATH"
 
 # Path to oh-my-zsh installation
   export ZSH=~/.oh-my-zsh
@@ -11,7 +12,7 @@ function random_emoji {
 }
 
 function stash_note {
-  echo $(date; cat ~/tmp/note) >> ~/tmp/notes && cat /dev/null > ~/tmp/note
+  echo "# $(date)\n$(cat ~/tmp/note.md)\n" >> ~/tmp/notes.md && cat /dev/null > ~/tmp/note.md
 }
 
 function emoji() {
@@ -32,8 +33,14 @@ function run() {
 # ZSH_THEME="wuffers"
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="fino"
-ZSH_THEME="spaceship"
-SPACESHIP_CHAR_SYMBOL="$(random_emoji) "
+# ZSH_THEME="crunch"
+
+# ZSH_THEME="daveverwer"
+ZSH_DISABLE_COMPFIX=true
+ZSH_THEME="sunrise-ruby"
+# ZSH_THEME="spaceship"
+# SPACESHIP_CHAR_SYMBOL="$(random_emoji) "
+SPACESHIP_CHAR_SYMBOL="➜  "
 
 COMPLETION_WAITING_DOTS="true"
 
@@ -47,12 +54,13 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 # export FZF_DEFAULT_COMMAND='rg --files ---hidden --follow -g "!.git" 2> /dev/null'
 
 # Set language environment
 export LANG=en_US.UTF-8
 
-export EDITOR=vim
+export EDITOR=nvim
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
@@ -73,6 +81,8 @@ alias rs="rails server"
 alias rsp="rails server -p"
 alias rc="rails console"
 alias rr="rails routes"
+alias brc="bundle exec rubocop"
+alias rdb="rails db:"
 
 ## git
 alias gpf="git push fork $(current_branch)"
@@ -80,9 +90,11 @@ alias ggmsg="git commit -m"
 
 # other stuff
 alias schedule="ruby ~/dev/ti31-schedule/fetch_schedule.rb"
-alias todo='vim ~/tmp/todo'
-alias notes='vim ~/tmp/notes'
-alias note='vim ~/tmp/note && stash_note'
+alias todo='vim ~/tmp/todo.md'
+alias notes='vim ~/tmp/notes.md'
+alias note='vim ~/tmp/note.md && stash_note'
+# alias separator="defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="small-spacer-tile";}'; killall Dock"
+alias 'am_i_bulgarian_yet?'='ruby ~/dev/bg/bg_citizenship_status.rb'
 
 export GEM_HOME=$HOME/.gem
 export GEM_PATH=$HOME/.gem
@@ -92,3 +104,6 @@ export PATH="$PATH:$GEM_HOME/bin"
 
 # Rust binaries
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
