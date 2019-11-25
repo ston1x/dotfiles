@@ -17,19 +17,20 @@ window:
   # Window dimensions in character columns and lines
   # (changes require restart)
   dimensions:
-    columns: 83
+    columns: 111
     lines: 26
 
   # Adds this many blank pixels of padding around the window
   # Units are physical pixels; this is not DPI aware.
   # (change requires restart)
   padding:
-    x: 5
-    y: 20
+    x: 0
+    y: 0
+    dynamic_padding: yes
 
   # Window decorations
   # Setting this to false will result in window without borders and title bar.
-  decorations: transparent
+  decorations: full
 
 # Display tabs using this many cells (changes require restart)
 tabspaces: 8
@@ -41,19 +42,22 @@ draw_bold_text_with_bright_colors: true
 font:
   # The normal (roman) font face to use.
   normal:
-    family: Iosevka
+    family: Space Mono
+    # family: FuraCode Nerd Font Mono
     # Style can be specified to pick a specific face.
-    style: Regular
+    # style: Medium
 
   # The bold font face
   bold:
-    family: Iosevka
+    family: Space Mono
+    # family: FuraCode Nerd Font Mono
     # Style can be specified to pick a specific face.
-    # style: Bold
+    style: Bold
 
   # The italic font face
   italic:
-    family: Iosevka
+    family: Space Mono
+    # family: FuraCode Nerd Font Mono
     # Style can be specified to pick a specific face.
     # style: Italic
 
@@ -86,9 +90,61 @@ font:
   use_thin_strokes: true
 
 # Should display the render timer
-render_timer: false
+debug.render_timer: false
+#
+# Colors (One Half Dark)
+# colors:
+#   primary:
+#     background: '0x282c34'
+#     foreground: '0xdcdfe4'
 
-# Colors (Solarized Light)
+#   normal:
+#     black: '0x282c34'
+#     red: '0xe06c75'
+#     green: '0x98c379'
+#     yellow: '0xe5c07b'
+#     blue: '0x61afef'
+#     magenta: '0xc678dd'
+#     cyan: '0x56b6c2'
+#     white: '0xdcdfe4'
+
+#   bright:
+#     black: '0x282c34'
+#     red: '0xe06c75'
+#     green: '0x98c379'
+#     yellow: '0xe5c07b'
+#     blue: '0x61afef'
+#     magenta: '0xc678dd'
+#     cyan: '0x56b6c2'
+#     white: '0xdcdfe4'
+
+# Colors (One Half Light)
+# colors:
+#   primary:
+#     background: '0xfafafa'
+#     foreground: '0x383a42'
+
+#   normal:
+#     black: '0x383a42'
+#     red: '0xe45649'
+#     green: '0x50a14f'
+#     yellow: '0xc18401'
+#     blue: '0x0184bc'
+#     magenta: '0xa626a4'
+#     cyan: '0x0997b3'
+#     white: '0xfafafa'
+
+#   bright:
+#     black: '0x383a42'
+#     red: '0xe45649'
+#     green: '0x50a14f'
+#     yellow: '0xc18401'
+#     blue: '0x0184bc'
+#     magenta: '0xa626a4'
+#     cyan: '0x0997b3'
+#     white: '0xfafafa'
+
+# # Colors (Solarized Light)
 # colors:
 #   # Default colors
 #   primary:
@@ -120,7 +176,183 @@ render_timer: false
 #     cyan:    '0x93a1a1'
 #     white:   '0xfdf6e3'
 
-# Colors (Tomorrow Night)
+# Colors (Solarized Dark)
+colors:
+  # Default colors
+  primary:
+    background: '0x002b36'
+    foreground: '0x839496'
+
+  # Normal colors
+  normal:
+    black:   '0x073642'
+    red:     '0xdc322f'
+    green:   '0x859900'
+    yellow:  '0xb58900'
+    blue:    '0x268bd2'
+    magenta: '0xd33682'
+    cyan:    '0x2aa198'
+    white:   '0xeee8d5'
+
+  # Bright colors
+  bright:
+    black:   '0x002b36'
+    red:     '0xcb4b16'
+    green:   '0x586e75'
+    yellow:  '0x657b83'
+    blue:    '0x839496'
+    magenta: '0x6c71c4'
+    cyan:    '0x93a1a1'
+    white:   '0xfdf6e3'
+
+# Colors (petrel)
+# colors:
+#   # Default colors
+#   primary:
+#     background: '0x0b141a'
+#     foreground: '0x787e82'
+
+#   # Colors the cursor will use if `custom_cursor_colors` is true
+#   cursor:
+#     text: '0x0b141a'
+#     cursor: '0x787e82'
+
+#   # Normal colors
+#   normal:
+#     black:   '0x1d252b'
+#     red:     '0xba656d'
+#     green:   '0x3f8f36'
+#     yellow:  '0x947b38'
+#     blue:    '0x4384b0'
+#     magenta: '0xb06886'
+#     cyan:    '0x35898c'
+#     white:   '0xe6eaed'
+
+#   # Bright colors
+#   bright:
+#     black:   '0x0b141a'
+#     red:     '0xb06d43'
+#     green:   '0x61707a'
+#     yellow:  '0x6d767d'
+#     blue:    '0x787e82'
+#     magenta: '0x8e6fbd'
+#     cyan:    '0x808487'
+#     white:   '0xffffff'
+
+# Colors (greygull)
+# colors:
+#   # Default colors
+#   primary:
+#     background: '0xffffff'
+#     foreground: '0x6d767d'
+
+#   # Colors the cursor will use if `custom_cursor_colors` is true
+#   cursor:
+#     text: '0xffffff'
+#     cursor: '0x6d767d'
+
+#   # Normal colors
+#   normal:
+#     black:   '0x1d252b'
+#     red:     '0xe3717d'
+#     green:   '0x43a838'
+#     yellow:  '0xb0913a'
+#     blue:    '0x469bd4'
+#     magenta: '0xd6769e'
+#     cyan:    '0x37a2a6'
+#     white:   '0xe6eaed'
+
+#   # Bright colors
+#   bright:
+#     black:   '0x0b141a'
+#     red:     '0xd67e47'
+#     green:   '0x61707a'
+#     yellow:  '0x6d767d'
+#     blue:    '0x787e82'
+#     magenta: '0xa980e8'
+#     cyan:    '0x808487'
+#     white:   '0xffffff'
+
+# Colors (Seagull)
+# colors:
+#   # Default colors
+#   primary:
+#     background: '0xffffff'
+#     foreground: '0x61707a'
+
+#   # Normal colors
+#   normal:
+#     black:   '0x0b141a'
+#     red:     '0xff4053'
+#     green:   '0x11ab00'
+#     yellow:  '0xbf8c00'
+#     blue:    '0x0099ff'
+#     magenta: '0x9854ff'
+#     cyan:    '0x00a5ab'
+#     white:   '0xffffff'
+
+#   # Bright colors
+#   bright:
+#     black:   '0x0b141a'
+#     red:     '0xff4053'
+#     green:   '0x11ab00'
+#     yellow:  '0xbf8c00'
+#     blue:    '0x0099ff'
+#     magenta: '0x9854ff'
+#     cyan:    '0x00a5ab'
+#     white:   '0xffffff'
+
+    # these prolly are the same
+  # normal:
+  #   black:     '0x073642'
+  #   red:       '0xdc322f'
+  #   green:     '0x859900'
+  #   yellow:    '0xb58900'
+  #   blue:      '0x268bd2'
+  #   magenta:   '0xd33682'
+  #   cyan:      '0x2aa198'
+  #   white:     '0xeee8d5'
+
+  # bright:
+  #   black   : '0x002b36'
+  #   red     : '0xcb4b16'
+  #   green   : '0x586e75'
+  #   yellow  : '0x657b83'
+  #   blue    : '0x839496'
+  #   magenta : '0x6c71c4'
+  #   cyan    : '0x93a1a1'
+  #   white   : '0xfdf6e3'
+
+# Colors (Tomorrow Night Bright)
+# colors:
+#   # Default colors
+#   primary:
+#     background: '0x000000'
+#     foreground: '0xeaeaea'
+
+#   # Normal colors
+#   normal:
+#     black:   '0x000000'
+#     red:     '0xd54e53'
+#     green:   '0xb9ca4a'
+#     yellow:  '0xe6c547'
+#     blue:    '0x7aa6da'
+#     magenta: '0xc397d8'
+#     cyan:    '0x70c0ba'
+#     white:   '0x424242'
+
+#   # Bright colors
+#   bright:
+#     black:   '0x666666'
+#     red:     '0xff3334'
+#     green:   '0x9ec400'
+#     yellow:  '0xe7c547'
+#     blue:    '0x7aa6da'
+#     magenta: '0xb77ee0'
+#     cyan:    '0x54ced6'
+#     white:   '0x2a2a2a'
+
+# # # Colors (Tomorrow Night)
 # colors:
 #   # Default colors
 #   primary:
@@ -154,38 +386,74 @@ render_timer: false
 #     cyan:    '0x54ced6'
 #     white:   '0x282a2e'
 
+# Colors (One Dark)
+# colors:
+# # Default colors
+#   primary:
+#     # background: '0x282c34'
+#     background: '0x303030'
+#     foreground: '0xabb2bf'
+
+#   # Cursor colors
+#   cursor:
+#     background: '0xabb2bf'
+#     foreground: '0x282c34'
+
+#   # Normal colors
+#   normal:
+#     black:   '0x282c34'
+#     red:     '0xe06c75'
+#     green:   '0x98c379'
+#     yellow:  '0xe5c07b'
+#     blue:    '0x61afef'
+#     magenta: '0xc678dd'
+#     cyan:    '0x56b6c2'
+#     white:   '0xabb2bf'
+
+#   # Bright colors
+#   bright:
+#     black:   '0x3e4452'
+#     red:     '0xbe5046'
+#     green:   '0x98c379'
+#     yellow:  '0xd19a66'
+#     blue:    '0x61afef'
+#     magenta: '0xc678dd'
+#     cyan:    '0x56b6c2'
+#     white:   '0x5c6370'
+
 # Colors (Gruvbox dark)
-colors:
-  # Default colors
-  primary:
-    # hard background: '0x1d2021'
-    # background: '0x282828'
-    # background: '0x32302f'
-    background: '0x262626'
-    # foreground: '0xebdbb2'
-    foreground: '0xafa489'
+# colors:
+#   # Default colors
+#   primary:
+#     # hard contrast: background = '0x1d2021'
+#     # contrast: background = '0x282828'
+#     # background: '0x282828'
+#     background: '0x202020'
+#     # soft contrast: background = '0x32302f'
+#     # contrast: background = '0xebdbb2'
+#     foreground: '0xebdbb2'
 
-  # Normal colors
-  normal:
-    black:   '0x282828'
-    red:     '0xcc241d'
-    green:   '0x98971a'
-    yellow:  '0xd79921'
-    blue:    '0x458588'
-    magenta: '0xb16286'
-    cyan:    '0x689d6a'
-    white:   '0x423d37'
+#   # Normal colors
+#   normal:
+#     black:   '0x282828'
+#     red:     '0xcc241d'
+#     green:   '0x98971a'
+#     yellow:  '0xd79921'
+#     blue:    '0x458588'
+#     magenta: '0xb16286'
+#     cyan:    '0x689d6a'
+#     white:   '0xa89984'
 
-  # Bright colors
-  bright:
-    black:   '0x928374'
-    red:     '0xfb4934'
-    green:   '0xb8bb26'
-    yellow:  '0xfabd2f'
-    blue:    '0x83a598'
-    magenta: '0xd3869b'
-    cyan:    '0x8ec07c'
-    white:   '0xebdbb2'
+#   # Bright colors
+#   bright:
+#     black:   '0x928374'
+#     red:     '0xfb4934'
+#     green:   '0xb8bb26'
+#     yellow:  '0xfabd2f'
+#     blue:    '0x83a598'
+#     magenta: '0xd3869b'
+#     cyan:    '0x8ec07c'
+#     white:   '0xebdbb2'
 
 # Visual Bell
 #
@@ -334,6 +602,7 @@ key_bindings:
   - { key: W,        mods: Command, chars: "\x01\x78"                    }
   - { key: F,        mods: Control, chars: "\x01\x66"                    }
   - { key: O,        mods: Command, chars: "\x01\x61"                    }
+  - { key: N,        mods: Command, action: SpawnNewInstance             }
   - { key: Home,                    chars: "\x1b[H",   mode: ~AppCursor  }
   - { key: Home,                    chars: "\x1b[1~",  mode: AppCursor   }
   - { key: End,                     chars: "\x1b[F",   mode: ~AppCursor  }
