@@ -16,7 +16,7 @@ if has('unnamedplus')
 endif
 
 set mouse=a
-" set laststatus=0
+set laststatus=2
 set updatetime=100
 
 " Set leader key
@@ -136,7 +136,7 @@ nnoremap <leader>f :Rg<CR>
 command! -bang -nargs=* Rg
       \ call fzf#vim#grep(
       \ 'rg --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
-      \ fzf#vim#with_preview({'options': '--bind ctrl-a:select-all,ctrl-d:deselect-all'}, 'right:50%', '?'),
+      \ fzf#vim#with_preview({'options': '--bind ctrl-a:select-all,ctrl-d:deselect-all --delimiter : --nth 4..'}, 'right:50%', '?'),
       \ <bang>0)
 vnoremap <leader>rg y:Rg <C-R>"<CR>
 
@@ -252,7 +252,7 @@ noremap <leader>rt :silent !ripper-tags -R --exclude=log
 set shell=zsh
 set tags+=.git/tags,.git/rubytags,.git/bundlertags
 set tagcase=match
-" noremap ,gt :!gentags<CR>
+noremap ,gt :!gentags<CR>
 
 " Convert slashes to backslashes for Windows.
 if has('win32')
@@ -317,7 +317,7 @@ map <Leader>c :call ColorToggle()<CR>
 let g:solarized_bold=1
 set cursorline
 " set termguicolors
-set bg=light
+set bg=dark
 " let g:neodark#background = '#202020'
 " let g:neodark#terminal_transparent = 1
 colo solarized
