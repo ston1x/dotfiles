@@ -16,7 +16,11 @@ if has('unnamedplus')
 endif
 
 set mouse=a
-set laststatus=2
+" set laststatus=2
+set laststatus=0
+set ruler rulerformat=%40(%=%<%F%m\ \
+                      \›\ %{getfsize(@%)}B\ \
+                      \›\ %l/%L:%v%)
 set updatetime=100
 
 " Set leader key
@@ -317,7 +321,7 @@ map <Leader>c :call ColorToggle()<CR>
 let g:solarized_bold=1
 set cursorline
 " set termguicolors
-set bg=dark
+set bg=light
 " let g:neodark#background = '#202020'
 " let g:neodark#terminal_transparent = 1
 colo solarized
