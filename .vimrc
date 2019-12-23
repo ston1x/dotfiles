@@ -1,3 +1,8 @@
+if !empty(matchstr($MY_RUBY_HOME, 'jruby'))
+  " let g:ruby_path = '/usr/bin/ruby'
+  let g:ruby_path = $HOME . '/.rvm/rubies/ruby-2.5.1/bin/ruby'
+endif
+
 " GENERAL VIM SETTINGS
 set number
 set noswapfile
@@ -74,6 +79,7 @@ Plug 'rrethy/vim-illuminate'
 Plug 'ap/vim-css-color'
 Plug 'mkitt/tabline.vim'
 Plug 'w0rp/ale'
+Plug 'vim-airline/vim-airline'
 Plug 'tmm1/ripper-tags'
 
 " Highlight
@@ -218,9 +224,10 @@ let NERDTreeShowHidden=1
 
 " Linting with ale
 let g:ale_linters = {'ruby': ['rubocop']}
+let g:ale_sign_column_always = 1
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
-let g:ale_pattern_options = {'.*\.gem.*\.rb$|.*\.rubies.*\.rb$': {'ale_enabled': 0}}
+let g:ale_pattern_options = {'.*\.gem.*\.rb$|.*\.rubies.*\.rb$': {'ale_enabled': 1}}
 let g:ale_set_highlights = 0
 
 " Remove trailing spaces on save
@@ -286,7 +293,7 @@ function! AlternateForCurrentFile()
   let new_file = current_file
   let in_spec = match(current_file, '^spec/') != -1
   let going_to_spec = !in_spec
-  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<lib\>') != -1 || match(current_file, '\<workers\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1 || match(current_file, '\<services\>') != -1
+  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<lib\>') != -1 || match(current_file, '\<workers\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1 || match(current_file, '\<services\>') != -1 || match(current_file, '\<lib\>') != -1
   if going_to_spec
     if in_app
       let new_file = substitute(new_file, '^app/', '', '')
