@@ -344,6 +344,9 @@ command! SpecFormatFix :%s/:\([a-z_]\+\)=>/\1: /gc
 command! NewHash       :%s/"\([^=,'"]*\)"\s\+=> /\1: /gc
 command! OldHash       :%s/\(\w*\): \(\w*\)/"\1" => \2/gc
 
+command! Scratch :tabedit ~/tmp/note.md
+command! Notes   :tabedit ~/tmp/notes.md
+
 
 " Tabular
 vmap ,:  :Tabularize /:\zs/l0l1<CR>
