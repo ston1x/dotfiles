@@ -1,2 +1,6 @@
-# pmset -g batt | grep -Eo "\d+%" | cut -d% -f1
-pmset -g batt | grep -Eo "\d+%"
+BATT=$(pmset -g batt)
+STATUS=$(echo $BATT | grep -Eo "\d+%" | cut -d% -f1)%
+if ! [[ $BATT == *"discharging"* ]]; then
+  STATUS="${STATUS} ⚡️"
+fi
+echo $STATUS
