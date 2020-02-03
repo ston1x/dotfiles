@@ -174,6 +174,9 @@ nnoremap <leader>co :Commits<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>h :History<CR>
 
+" Gdiff split always vertical
+set diffopt+=vertical
+
 nnoremap <silent> <leader>a :ArgWrap<CR>
 nnoremap <leader>t :BTags<CR>
 nnoremap <leader>e :edit!<CR>
