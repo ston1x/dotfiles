@@ -9,6 +9,10 @@ set noswapfile
 set undofile
 set relativenumber
 
+" relativenumber for NERDTree
+let NERDTreeShowLineNumbers=1
+autocmd FileType nerdtree setlocal relativenumber
+
 " Colemak to QWERTY for hjkl
 " noremap n j
 " noremap e k
@@ -158,7 +162,7 @@ vnoremap <leader>rg y:Rg <C-R>"<CR>
 
 "Mappings
 
-nnoremap ,f :tabnew %<CR>
+nnoremap ,f :tabnew<CR>
 nnoremap ,v :vsplit %<CR>
 
 nnoremap <Leader>q :wq<CR>
@@ -355,6 +359,7 @@ command! OldHash       :%s/\(\w*\): \(\w*\)/"\1" => \2/gc
 
 command! Scratch :tabedit ~/tmp/note.md
 command! Notes   :tabedit ~/tmp/notes.md
+command! ParseFix :s/\\u0001/\r/g
 
 
 " Tabular
