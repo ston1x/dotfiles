@@ -156,7 +156,7 @@ nnoremap <leader>f :Rg<CR>
 command! -bang -nargs=* Rg
       \ call fzf#vim#grep(
       \ 'rg --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
-      \ fzf#vim#with_preview({'options': '--bind ctrl-a:select-all,ctrl-d:deselect-all --delimiter : --nth 4..'}, 'right:50%', '?'),
+      \ fzf#vim#with_preview({'options': '--bind ctrl-a:select-all,ctrl-d:deselect-all --delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
       \ <bang>0)
 vnoremap <leader>rg y:Rg <C-R>"<CR>
 
