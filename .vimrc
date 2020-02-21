@@ -10,8 +10,8 @@ set undofile
 set relativenumber
 
 " relativenumber for NERDTree
-let NERDTreeShowLineNumbers=1
-autocmd FileType nerdtree setlocal relativenumber
+" let NERDTreeShowLineNumbers=1
+" autocmd FileType nerdtree setlocal relativenumber
 
 " Colemak to QWERTY for hjkl
 " noremap n j
@@ -27,9 +27,9 @@ endif
 set mouse=a
 " set laststatus=2
 set laststatus=0
-set ruler rulerformat=%40(%=%<%F%m\ \
-                      \›\ %{getfsize(@%)}B\ \
-                      \›\ %l/%L:%v%)
+" set ruler rulerformat=%40(%=%<%F%m\ \
+"                       \›\ %{getfsize(@%)}B\ \
+"                       \›\ %l/%L:%v%)
 set updatetime=100
 
 " Set leader key
@@ -83,8 +83,8 @@ Plug 'rrethy/vim-illuminate'
 Plug 'ap/vim-css-color'
 Plug 'mkitt/tabline.vim'
 Plug 'w0rp/ale'
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'tmm1/ripper-tags'
 
 Plug 'ervandew/supertab'
@@ -105,6 +105,7 @@ Plug 'squarefrog/tomorrow-night.vim'
 Plug 'nightsense/seabird'
 Plug 'sonph/onehalf'
 Plug 'KeitaNakamura/neodark.vim'
+Plug 'jeffkreeftmeijer/vim-dim'
 
  " Comfortable typing
  Plug 'junegunn/goyo.vim'
@@ -345,8 +346,9 @@ set bg=light
 " let g:neodark#background = '#202020'
 " let g:neodark#terminal_transparent = 1
 colo solarized
-" let g:gruvbox_contrast_dark='medium'
-" let g:gruvbox_bold=1
+" let g:airline_theme='atomic'
+let g:gruvbox_contrast_dark='medium'
+let g:gruvbox_bold=1
 
 syntax enable
 
