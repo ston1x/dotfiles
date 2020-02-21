@@ -34,10 +34,15 @@ function run() {
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="fino"
 # ZSH_THEME="crunch"
+# ZSH_THEME="cypher-ruby"
+# ZSH_THEME=macovsky
+# ZSH_THEME=refined
+ZSH_THEME=refined-recoloured
+# ZSH_THEME=reemojined
 
 # ZSH_THEME="daveverwer"
 ZSH_DISABLE_COMPFIX=true
-ZSH_THEME="sunrise-ruby"
+#ZSH_THEME="sunrise-ruby"
 # ZSH_THEME="spaceship"
 # SPACESHIP_CHAR_SYMBOL="$(random_emoji) "
 SPACESHIP_CHAR_SYMBOL="➜  "
@@ -49,8 +54,10 @@ plugins=(
   git
   zsh-autosuggestions
   wd
-  fzf-zsh
+  # fzf-zsh
 )
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=3'
 
 source $ZSH/oh-my-zsh.sh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
@@ -105,5 +112,15 @@ export PATH="$PATH:$GEM_HOME/bin"
 # Rust binaries
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
+export THEOS=~/theos
+THEOS_DEVICE_IP=panettone.local
+export THEOS_DEVICE_PORT=22
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+eval "$(pyenv init -)"
+
+# added by travis gem
+[ -f /Users/nstoianov/.travis/travis.sh ] && source /Users/nstoianov/.travis/travis.sh
