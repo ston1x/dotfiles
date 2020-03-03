@@ -86,6 +86,8 @@ Plug 'w0rp/ale'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tmm1/ripper-tags'
+" Extended visual mode commands
+Plug 'vim-scripts/vis'
 
 Plug 'ervandew/supertab'
   let g:loaded_ruby_provider = 1
