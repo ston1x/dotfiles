@@ -4,7 +4,7 @@
 
 ## Things I use
 
-- **Terminal** emulator: iTerm2 or Alacritty (it depends)
-- **Font**: Monaco / Space Mono / Menlo
+- **Terminal emulator**: Alacritty ftw
+- **Fonts**: ['Monaco', 'Fira Code', 'Overpass Mono', 'Mononoki']
 - **Multiplexer**: tmux
 - **Theme**: Solarized Light / Solarized Dark (it depends)
