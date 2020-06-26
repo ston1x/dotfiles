@@ -127,6 +127,9 @@ nnoremap <leader>u :UndotreeToggle<CR>
 " Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 " Plug 'pangloss/vim-javascript'
 
+" Rust
+  Plug 'rust-lang/rust.vim'
+  Plug 'joukevandermaas/vim-ember-hbs'
 
 " deoplete
 if has('nvim')
