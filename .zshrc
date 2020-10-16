@@ -95,6 +95,10 @@ alias rdb="rails db:"
 alias gpf="git push fork $(current_branch)"
 alias ggmsg="git commit -m"
 
+## docker
+alias dcps="docker-compose ps"
+alias dst="docker stats"
+
 # other stuff
 alias schedule="ruby ~/dev/ti31-schedule/fetch_schedule.rb"
 alias todo='vim ~/tmp/todo.md'
@@ -120,7 +124,7 @@ export THEOS_DEVICE_PORT=22
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
 
 # added by travis gem
 [ -f /Users/nstoianov/.travis/travis.sh ] && source /Users/nstoianov/.travis/travis.sh
