@@ -36,8 +36,8 @@ function run() {
 # ZSH_THEME="crunch"
 # ZSH_THEME="cypher-ruby"
 # ZSH_THEME=macovsky
-# ZSH_THEME=refined
-ZSH_THEME=refined-recoloured
+ ZSH_THEME=refined
+# ZSH_THEME=refined-recoloured
 # ZSH_THEME=reemojined
 
 # ZSH_THEME="daveverwer"
@@ -49,12 +49,14 @@ SPACESHIP_CHAR_SYMBOL="➜  "
 
 COMPLETION_WAITING_DOTS="true"
 
+
+[ -f ~/.ff.zsh ] && source ~/.fzf.zsh
 # PLUGINS
 plugins=(
   git
   zsh-autosuggestions
   wd
-  # fzf-zsh
+  fzf
 )
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=3'
@@ -119,8 +121,6 @@ export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
 export THEOS=~/theos
 THEOS_DEVICE_IP=panettone.local
 export THEOS_DEVICE_PORT=22
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
