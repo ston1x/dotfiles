@@ -4,7 +4,10 @@
 
 ## Things I use
 
-- **Terminal emulator**: Alacritty ftw
-- **Fonts**:  `['Monaco', 'Fira Code', 'Overpass Mono', 'Mononoki']`
-- **Multiplexer**: tmux
-- **Theme**: Solarized Light / Solarized Dark (it depends)
+```ruby
+TERMINAL_EMULATOR = 'Alacritty ftw'
+MULTIPLEXER = :tmux
+EDITOR = :neovim
+THEME = 'altercation/vim-colors-solarized'
+FONTS = ['Monaco', 'Fira Code', 'Overpass Mono', 'Mononoki']
+```
