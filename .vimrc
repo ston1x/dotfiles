@@ -26,10 +26,11 @@ endif
 
 set mouse=a
 " set laststatus=2
-set laststatus=0
+" set laststatus=0
 " set ruler rulerformat=%40(%=%<%F%m\ \
 "                       \›\ %{getfsize(@%)}B\ \
 "                       \›\ %l/%L:%v%)
+
 set updatetime=100
 
 " Set leader key
@@ -75,7 +76,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
 let g:gitgutter_map_keys = 0
+
 Plug 'vim-scripts/matchit.zip'
+runtime macros/matchit.vim
+
 Plug 'mileszs/ack.vim'
 Plug 'foosoft/vim-argwrap'
 Plug 'godlygeek/tabular'
@@ -108,6 +112,12 @@ Plug 'nightsense/seabird'
 Plug 'sonph/onehalf'
 Plug 'KeitaNakamura/neodark.vim'
 Plug 'jeffkreeftmeijer/vim-dim'
+Plug 'trevorrjohn/vim-obsidian'
+Plug 'kaicataldo/material.vim'
+
+" Ruby blocks selection
+Plug 'kana/vim-textobj-user'
+Plug 'nelstrom/vim-textobj-rubyblock'
 
  " Comfortable typing
  Plug 'junegunn/goyo.vim'
@@ -149,6 +159,7 @@ au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
 "using rg for find in project
+" Search Ruby method under cursor
 let g:rg_command = '
   \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
   \ -g "*.{coffee,haml,hamlc,js,json,rs,go,rb,py,swift,scss}"
@@ -164,7 +175,21 @@ command! -bang -nargs=* Rg
       \ 'rg --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
       \ fzf#vim#with_preview({'options': '--bind ctrl-a:select-all,ctrl-d:deselect-all --delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
       \ <bang>0)
+"                                                                                      --delimiter : --nth 4..
 vnoremap <leader>rg y:Rg <C-R>"<CR>
+
+function! SearchMethodUnderCursor()
+  let method_name = @"
+  let concatenated = "def " . method_name
+  execute ":Rg ". concatenated
+endfunction
+
+" Find the word under cursor
+nnoremap <leader>sw yiw:Rg <C-R>"<CR>
+" Find the method under cursor
+" nnoremap <leader>sm "def".yiw:Rg <C-R>"<CR>
+nnoremap <leader>sm yiw:call SearchMethodUnderCursor()<CR>
+
 
 "Mappings
 
@@ -225,7 +250,12 @@ function! InsertBindingPry()
   execute ':normal! o' . "binding.pry"
 endfunction
 
+function! InsertBindingRemotePry()
+  execute ':normal! o' . "binding.remote_pry"
+endfunction
+
 nnoremap ,bp :call InsertBindingPry() <CR>
+nnoremap ,br :call InsertBindingRemotePry() <CR>
 
 " NERDTree
 function! MyNerdToggle()
@@ -275,7 +305,11 @@ function! MarkdownConcealToggle()
     set conceallevel=2
   endif
 endfunction
-nnoremap <leader>mc :call MarkdownConcealToggle()<CR>
+nnoremap <leader>c :call MarkdownConcealToggle()<CR>
+
+" disable by default
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
 
 "Tags
 noremap <leader>rt :silent !ripper-tags -R --exclude=log
@@ -312,7 +346,7 @@ function! AlternateForCurrentFile()
   let new_file = current_file
   let in_spec = match(current_file, '^spec/') != -1
   let going_to_spec = !in_spec
-  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<lib\>') != -1 || match(current_file, '\<workers\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1 || match(current_file, '\<services\>') != -1 || match(current_file, '\<lib\>') != -1
+  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<lib\>') != -1 || match(current_file, '\<workers\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1 || match(current_file, '\<services\>') != -1 || match(current_file, '\<lib\>') != -1 || match(current_file, '\<finders\>') != -1
   if going_to_spec
     if in_app
       let new_file = substitute(new_file, '^app/', '', '')
@@ -341,17 +375,17 @@ function! ColorToggle()
     set background=dark
   endif
 endfunction
-map <Leader>c :call ColorToggle()<CR>
+map <Leader>m :call ColorToggle()<CR>
 
 " Set theme
 let g:solarized_bold=1
 set cursorline
 " set termguicolors
+colo solarized
 set bg=light
 " let g:neodark#background = '#202020'
 " let g:neodark#terminal_transparent = 1
-colo solarized
-" let g:airline_theme='atomic'
+" let g:airline_theme='zenburn'
 let g:gruvbox_contrast_dark='medium'
 let g:gruvbox_bold=1
 
@@ -364,9 +398,15 @@ command! SpecFormatFix :%s/:\([a-z_]\+\)=>/\1: /gc
 command! NewHash       :%s/"\([^=,'"]*\)"\s\+=> /\1: /gc
 command! OldHash       :%s/\(\w*\): \(\w*\)/"\1" => \2/gc
 
+" Taking notes
 command! Scratch :tabedit ~/tmp/note.md
 command! Notes   :tabedit ~/tmp/notes.md
 command! ParseFix :s/\\u0001/\r/g
+command! ParseFix2 :s/\A^/\r/g
+
+" Notepad
+command! Notepad :vsplit ~/tmp/notepad.md
+nnoremap <Leader>n :Notepad<CR>
 
 
 " Tabular
