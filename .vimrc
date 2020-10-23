@@ -75,6 +75,8 @@ Plug 'ngmy/vim-rubocop'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
+
+
 let g:gitgutter_map_keys = 0
 
 Plug 'vim-scripts/matchit.zip'
@@ -381,8 +383,12 @@ map <Leader>m :call ColorToggle()<CR>
 let g:solarized_bold=1
 set cursorline
 " set termguicolors
-colo solarized
-set bg=light
+colo gruvbox
+set bg=dark
+
+" Make left gutter bar not grey
+autocmd ColorScheme * highlight! link SignColumn LineNr
+
 " let g:neodark#background = '#202020'
 " let g:neodark#terminal_transparent = 1
 " let g:airline_theme='zenburn'
