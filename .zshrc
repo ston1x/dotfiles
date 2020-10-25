@@ -109,6 +109,9 @@ alias note='vim ~/tmp/note.md && stash_note'
 # alias separator="defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="small-spacer-tile";}'; killall Dock"
 alias 'am_i_bulgarian_yet?'='ruby ~/dev/bg/bg_citizenship_status.rb'
 
+# kill unicorn
+ps aux | grep 'unicorn' | awk '{print $2}' | xargs sudo kill -9
+
 export GEM_HOME=$HOME/.gem
 export GEM_PATH=$HOME/.gem
 
