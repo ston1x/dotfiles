@@ -110,7 +110,7 @@ alias note='vim ~/tmp/note.md && stash_note'
 alias 'am_i_bulgarian_yet?'='ruby ~/dev/bg/bg_citizenship_status.rb'
 
 # kill unicorn
-ps aux | grep 'unicorn' | awk '{print $2}' | xargs sudo kill -9
+alias ku='ps aux | grep 'unicorn' | awk '{print $2}' | xargs sudo kill -9'
 
 export GEM_HOME=$HOME/.gem
 export GEM_PATH=$HOME/.gem
