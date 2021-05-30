@@ -75,7 +75,7 @@ Plug 'ngmy/vim-rubocop'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
-
+Plug 'k0kubun/vim-open-github'
 
 let g:gitgutter_map_keys = 0
 
