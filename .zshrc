@@ -27,16 +27,23 @@ function run() {
     done
 }
 
+function gentags() {
+  echo "Exporting tags..."
+  ripper-tags -R -f .git/rubytags --tag-relative=yes
+}
+
 # THEMES
 # ZSH_THEME="flazz"
 # ZSH_THEME="sunrise"
+ZSH_THEME="sunrise-ruby"
 # ZSH_THEME="wuffers"
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="fino"
 # ZSH_THEME="crunch"
+# ZSH_THEME="cypher"
 # ZSH_THEME="cypher-ruby"
 # ZSH_THEME=macovsky
- ZSH_THEME=refined
+ # ZSH_THEME=refined
 # ZSH_THEME=refined-recoloured
 # ZSH_THEME=reemojined
 
@@ -124,6 +131,7 @@ export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
 export THEOS=~/theos
 THEOS_DEVICE_IP=panettone.local
 export THEOS_DEVICE_PORT=22
+export BAT_THEME="Solarized (light)"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
