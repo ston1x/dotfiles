@@ -181,6 +181,13 @@ command! -bang -nargs=* Rg
       \ fzf#vim#with_preview({'options': '--bind ctrl-a:select-all,ctrl-d:deselect-all --delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
       \ <bang>0)
 "                                                                                      --delimiter : --nth 4..
+
+command! -bang -nargs=* CustomRg
+      \ call fzf#vim#grep(
+      \ 'rg --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
+      \ fzf#vim#with_preview({'options': '--bind ctrl-a:select-all,ctrl-d:deselect-all'}, 'right:50%:hidden', '?'),
+      \ <bang>0)
+nnoremap <leader>cf :CustomRg<CR>
 vnoremap <leader>rg y:Rg <C-R>"<CR>
 
 function! SearchMethodUnderCursor()
@@ -303,6 +310,9 @@ set foldmethod=indent " foldmethod=syntax is slow
 nnoremap <leader>z zMzv
 
 " Markdown
+  " Table Of Contents (TOC)
+  nnoremap <leader>v :Toch<CR>
+
 function! MarkdownConcealToggle()
   if(&conceallevel == 2)
     set conceallevel=0
