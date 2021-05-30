@@ -133,7 +133,7 @@ nnoremap <leader>u :UndotreeToggle<CR>
 
   augroup pencil
     autocmd!
-    autocmd FileType markdown,mkd,md :SoftPencil
+    autocmd FileType markdown,mkd,md,json,yaml :SoftPencil
     autocmd FileType text            :SoftPencil
   augroup END
 
