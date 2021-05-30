@@ -89,14 +89,17 @@ Plug 'rrethy/vim-illuminate'
 Plug 'ap/vim-css-color'
 Plug 'mkitt/tabline.vim'
 Plug 'w0rp/ale'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 Plug 'tmm1/ripper-tags'
 " Extended visual mode commands
 Plug 'vim-scripts/vis'
 
+" Global replace
+Plug 'skwp/greplace.vim'
+
 Plug 'ervandew/supertab'
-  let g:loaded_ruby_provider = 1
+  " let g:loaded_ruby_provider = 1
   let g:SuperTabDefaultCompletionType = 'context'
   let g:SuperTabContextDefaultCompletionType = '<c-n>'
 
