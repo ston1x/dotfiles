@@ -134,15 +134,30 @@ export PATH="$PATH:$GEM_HOME/bin"
 
 # Rust binaries
 export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
+# export PATH="/usr/local/opt/postgresql@13.3/bin:$PATH"
 export THEOS=~/theos
 THEOS_DEVICE_IP=panettone.local
 export THEOS_DEVICE_PORT=22
 export BAT_THEME="Solarized (light)"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+# export PATH="$PATH:$HOME/.rvm/bin"
 # eval "$(pyenv init -)"
 
 # added by travis gem
 [ -f /Users/nstoianov/.travis/travis.sh ] && source /Users/nstoianov/.travis/travis.sh
+
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+# export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+alias ibrew='arch -x86_64 /usr/local/bin/brew'
+# export PATH="/usr/local/opt/libpq/bin:/opt/homebrew/bin:/usr/local/bin:$PATH"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/libpq/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/libpq/lib/pkgconfig"
