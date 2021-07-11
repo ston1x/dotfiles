@@ -119,6 +119,13 @@ alias 'am_i_bulgarian_yet?'='ruby ~/dev/bg/bg_citizenship_status.rb'
 # kill unicorn
 alias ku='ps aux | grep 'unicorn' | awk '{print $2}' | xargs sudo kill -9'
 
+
+# prepare parallel specs
+alias pp="RAILS_ENV=test ./bin/rake parallel:drop && RAILS_ENV=test ./bin/rake parallel:create && RAILS_ENV=test ./bin/rake parallel:load_schema"
+
+# run parallel specs
+alias pr="RAILS_ENV=test ./bin/bundle exec rake parallel:spec"
+
 export GEM_HOME=$HOME/.gem
 export GEM_PATH=$HOME/.gem
 
