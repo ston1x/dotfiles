@@ -240,9 +240,9 @@ nnoremap <Leader>w :w<CR>
 " nnoremap <leader>o :only<CR>
 
 " git
-nnoremap <leader>g :Gstatus<CR>
-nnoremap <leader>d :Gdiff<CR>
-nnoremap <leader>l :Gblame<CR>
+nnoremap <leader>g :Git<CR>
+nnoremap <leader>d :Gdiffsplit<CR>
+nnoremap <leader>l :Git blame<CR>
 nnoremap <leader>co :Commits<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>h :History<CR>
