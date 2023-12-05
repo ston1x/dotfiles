@@ -428,7 +428,6 @@ set bg=dark
 " Make left gutter bar not grey
 autocmd ColorScheme * highlight! link SignColumn LineNr
 
-" let g:neodark#background = '#202020'
 " let g:neodark#terminal_transparent = 1
 " let g:airline_theme='zenburn'
 let g:gruvbox_contrast_dark='medium'

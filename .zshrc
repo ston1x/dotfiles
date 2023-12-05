@@ -69,7 +69,7 @@ plugins=(
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=3'
 
 source $ZSH/oh-my-zsh.sh
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{node_modules/*,log/*,vendor/bundle/*,tmp/*,.git/*}"'
 export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 # export FZF_DEFAULT_COMMAND='rg --files ---hidden --follow -g "!.git" 2> /dev/null'
 
@@ -99,6 +99,8 @@ alias rc="bin/rails console"
 alias rr="bin/rails routes"
 alias brc="bundle exec rubocop"
 alias rdb="bin/rails db:"
+
+alias rubocopdiff='git diff master --name-only --diff-filter=d | grep "\.rb" | xargs bundle exec rubocop --force-exclusion -A'
 
 ## git
 alias gpf="git push fork $(current_branch)"
