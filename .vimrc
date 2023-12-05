@@ -1,13 +1,15 @@
 if !empty(matchstr($MY_RUBY_HOME, 'jruby'))
   " let g:ruby_path = '/usr/bin/ruby'
-  let g:ruby_path = $HOME . '/.rvm/rubies/ruby-2.5.1/bin/ruby'
+  " let g:ruby_path = $HOME . '/.rvm/rubies/ruby-2.5.1/bin/ruby' " Probably deprecated
+  " Trying rbenv ruby instead:
+  let g:ruby_path = $HOME . '/Users/ston1x/.rbenv/shims/ruby'
 endif
 
 " GENERAL VIM SETTINGS
 set number
 set noswapfile
 set undofile
-set relativenumber
+set norelativenumber
 
 " relativenumber for NERDTree
 " let NERDTreeShowLineNumbers=1
@@ -67,6 +69,20 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+" This renders random symbols for some reason.
+" let g:NERDTreeGitStatusIndicatorMapCustom = {
+"                 \ 'Modified'  :'📝',
+"                 \ 'Staged'    :'+',
+"                 \ 'Untracked' :'❓',
+"                 \ 'Renamed'   :'➜',
+"                 \ 'Unmerged'  :'═',
+"                 \ 'Deleted'   :'❌',
+"                 \ 'Dirty'     :'🛠',
+"                 \ 'Ignored'   :'☒',
+"                 \ 'Clean'     :'✔︎',
+"                 \ 'Unknown'   :'⁉️',
+"                 \ }
 Plug 'mbbill/undotree'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'yggdroot/indentline'
@@ -133,7 +149,7 @@ nnoremap <leader>u :UndotreeToggle<CR>
 
   augroup pencil
     autocmd!
-    autocmd FileType markdown,mkd,md,json,yaml :SoftPencil
+    autocmd FileType markdown,mkd,md,yaml :SoftPencil
     autocmd FileType text            :SoftPencil
   augroup END
 
@@ -190,18 +206,28 @@ command! -bang -nargs=* CustomRg
 nnoremap <leader>cf :CustomRg<CR>
 vnoremap <leader>rg y:Rg <C-R>"<CR>
 
-function! SearchMethodUnderCursor()
+function! SearchRubyMethodUnderCursor()
   let method_name = @"
   let concatenated = "def " . method_name
   execute ":Rg ". concatenated
 endfunction
 
+function! SearchRubyClassUnderCursor()
+  let class_name = @"
+  let concatenated = "class " . class_name
+  execute ":Rg ". concatenated
+endfunction
+
 " Find the word under cursor
 nnoremap <leader>sw yiw:Rg <C-R>"<CR>
+
 " Find the method under cursor
 " nnoremap <leader>sm "def".yiw:Rg <C-R>"<CR>
-nnoremap <leader>sm yiw:call SearchMethodUnderCursor()<CR>
+nnoremap <leader>sm yiw:call SearchRubyMethodUnderCursor()<CR>
 
+" Find the class under cursor
+" nnoremap <leader>sc "class".yiw:Rg <C-R>"<CR>
+nnoremap <leader>sc yiw:call SearchRubyClassUnderCursor()<CR>
 
 "Mappings
 
