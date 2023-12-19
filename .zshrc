@@ -34,8 +34,8 @@ function gentags() {
 
 # THEMES
 # ZSH_THEME="flazz"
-# ZSH_THEME="sunrise"
-ZSH_THEME="sunrise-ruby"
+ZSH_THEME="sunrise"
+# ZSH_THEME="sunrise-ruby"
 # ZSH_THEME="wuffers"
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="fino"
@@ -128,11 +128,11 @@ alias pp="RAILS_ENV=test ./bin/rake parallel:drop && RAILS_ENV=test ./bin/rake p
 # run parallel specs
 alias pr="RAILS_ENV=test ./bin/bundle exec rake parallel:spec"
 
-export GEM_HOME=$HOME/.gem
-export GEM_PATH=$HOME/.gem
-
+# Update from 19.12.2023 - this is not necessary anymore since rbenv uses its own gem home
+# export GEM_HOME=$HOME/.gem
+# export GEM_PATH=$HOME/.gem
 # Add gem binaries
-export PATH="$PATH:$GEM_HOME/bin"
+# export PATH="$PATH:$GEM_HOME/bin"
 
 # Rust binaries
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -160,6 +160,9 @@ alias ibrew='arch -x86_64 /usr/local/bin/brew'
 # export PATH="/usr/local/opt/libpq/bin:/opt/homebrew/bin:/usr/local/bin:$PATH"
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
-export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/libpq/include"
-export PKG_CONFIG_PATH="/opt/homebrew/opt/libpq/lib/pkgconfig"
+# export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/libpq/include"
+# export PKG_CONFIG_PATH="/opt/homebrew/opt/libpq/lib/pkgconfig"
+
+# Temporary fix for RubyMine not running tests (NSCFConstantString issue)
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
